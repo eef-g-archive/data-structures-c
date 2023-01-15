@@ -45,11 +45,10 @@ void List_removeIndex(Listptr self, int index)
     {
         n = n->next;
     }
-    printf("Value of node to be destroyed: %d\n",n->next->val);
     Nodeptr temp = n->next->next;
-    Node_setNext(n, temp);
-    printf("Value of new next node is: %d\n",n->next->val);
     Node_destroy(n->next);
+    n->next = NULL;
+    Node_setNext(n, temp);
     self->len--;
 }
 

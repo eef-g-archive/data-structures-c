@@ -24,7 +24,9 @@ int main()
     List_addValue(l, 13);
     List_addValue(l, 25);
     List_addValue(l, 7);
+    List_addValue(l, 18);
     List_printList(l);
-    List_removeIndex(l, 1);
+    List_removeIndex(l, 2);
     List_printList(l);
+    printf("=-=-=-=-=-=-=- End List Testing =-=-=-=-=-=-=-\n");
 }
