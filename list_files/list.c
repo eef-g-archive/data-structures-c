@@ -38,22 +38,21 @@ void List_addValue(Listptr self, int val)
     self->len++;
 }
 
-void List_removeIndex(Listptr self, int index)
-{
-    Nodeptr n = self->head;
-    for(int i = 0; i < index - 1; i++)
-    {
-        n = n->next;
-    }
-    Nodeptr temp = n->next->next;
-    Node_destroy(n->next);
-    n->next = NULL;
-    Node_setNext(n, temp);
-    self->len--;
-}
-
 
 /* Other Methods */
+
+Nodeptr List_walkToIndex(Listptr self, int index)
+{
+    Nodeptr curr = self->head;
+
+    // Will add an "Out of Index" error if it's too large or small.
+
+    for(int i = 0; i < index; i++)
+    {
+        curr = curr->next;
+    }
+    return curr;
+}
 
 void List_printList(Listptr self)
 {
@@ -81,6 +80,37 @@ void List_printList(Listptr self)
     }
 }
 
+void List_insert(Listptr self, int index, int val)
+{
+    Nodeptr node = Node_new(val);
+    Nodeptr listNode = List_walkToIndex(self, index - 1);
+    node->next = listNode->next;
+    listNode->next = node;
+    self->len++;
+}
+
+
+
+// removeAt works, however need to figure out how to make it work if you removeAt the start of the list
+
+void List_removeAt(Listptr self, int index)
+{
+    if (index != 0)
+    {
+        Nodeptr del = List_walkToIndex(self, index);
+        Nodeptr delPrev = List_walkToIndex(self, index-1);
+        delPrev->next = del->next;
+        Node_destroy(del);
+        self->len--;
+    }
+    else
+    {
+        Nodeptr temp = self->head;
+        Node_destroy(self->head);
+        self->head = temp;
+        self->len--;
+    }
+}
 
 
 

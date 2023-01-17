@@ -18,7 +18,10 @@ Listptr List_new();
 void List_init(Listptr l);
 void List_addValue(Listptr self, int val);
 void List_printList(Listptr self);
-void List_removeIndex(Listptr self, int index);
+Nodeptr List_walkToIndex(Listptr self, int index);
+void List_insert(Listptr self, int index, int val);
+void List_removeAt(Listptr self, int index);
+
 
 
 
