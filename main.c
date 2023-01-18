@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include<stdlib.h>
 
+void testEmptyList(Listptr l);
+void testCreateList(Listptr l, int vals[]);
 
 int main()
 {
@@ -20,17 +22,37 @@ int main()
     printf("=-=-=-=-=-=-=- End Node Testing =-=-=-=-=-=-=-\n\n\n");
 
     printf("=-=-=-=-=-=-=- List Testing =-=-=-=-=-=-=-\n");
+    int listVals[5] = {13, 25, 7, 18, 2};
     Listptr l = List_new();
-    List_addValue(l, 13);
-    List_addValue(l, 25);
-    List_addValue(l, 7);
-    List_addValue(l, 18);
-    List_printList(l);
-    List_removeAt(l, 2);
-    List_printList(l);
-    List_insert(l, 2, 77);
-    List_printList(l);
-    List_removeAt(l, 0);
-    List_printList(l);
+    testCreateList(l, listVals);
+    testEmptyList(l);
+    testCreateList(l, listVals);
     printf("=-=-=-=-=-=-=- End List Testing =-=-=-=-=-=-=-\n");
+}
+
+void testEmptyList(Listptr l)
+{
+    printf("[Empty List Test] Starting List: ");
+    List_printList(l);
+    int i = 0;
+    while(l->len > 0)
+    {
+        printf("| ");
+        List_removeAt(l, 0);
+        List_printList(l);
+        i++;
+    }
+}
+
+
+void testCreateList(Listptr l, int vals[])
+{
+    printf("[Adding Values test] Starting List: ");
+    List_printList(l);
+    for(int i = 0; i < 5; i++)
+    {
+        printf("| ");
+        List_addValue(l, vals[i]);
+        List_printList(l);
+    }
 }
