@@ -96,6 +96,7 @@ void List_insert(Listptr self, int index, int val)
 
 void List_removeAt(Listptr self, int index)
 {
+    // Check to make sure we're not removing the head of the list
     if (index != 0)
     {
         Nodeptr del = List_walkToIndex(self, index);
@@ -107,6 +108,7 @@ void List_removeAt(Listptr self, int index)
             self->tail = delPrev;
         }
     }
+    // If we are, then make the precautions needed
     else
     {
         Nodeptr del = List_walkToIndex(self, index);
