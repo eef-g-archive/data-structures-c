@@ -20,10 +20,10 @@ void List_init(Listptr l)
 }
 
 /* Getters & Setters */
-void List_addValue(Listptr self, int val)
+void List_addValue(Listptr self, void* val, dataType type)
 {
     // First, make the node
-    Nodeptr n = Node_new(val);
+    Nodeptr n = Node_new(val, type);
 
     if(self->len == 0)
     {
@@ -81,9 +81,9 @@ void List_printList(Listptr self)
     }
 }
 
-void List_insert(Listptr self, int index, int val)
+void List_insert(Listptr self, int index, void* val, dataType type)
 {
-    Nodeptr node = Node_new(val);
+    Nodeptr node = Node_new(val, type);
     Nodeptr listNode = List_walkToIndex(self, index - 1);
     node->next = listNode->next;
     listNode->next = node;

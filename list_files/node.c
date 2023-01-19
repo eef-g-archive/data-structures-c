@@ -5,17 +5,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 /* Constructor Functions */
-Nodeptr Node_new(int val)
+Nodeptr Node_new(int val, dataType type)
 {
     Nodeptr n = (Nodeptr)malloc(sizeof(Node));
-    Node_init(n, val);
+    Node_init(n, val, type);
     return n;
 }
 
-void Node_init(Nodeptr n, int val)
+void Node_init(Nodeptr n, int val, dataType type)
 {
     n->val = val;
+    n->type = type;
 }
 
 

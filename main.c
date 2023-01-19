@@ -8,11 +8,12 @@ void testCreateList(Listptr l, int vals[]);
 int main()
 {
     printf("=-=-=-=-=-=-=- Node Testing =-=-=-=-=-=-=-\n");
-    Nodeptr n1 = Node_new(15);
-    Nodeptr n2 = Node_new(24);
+    Nodeptr n1 = Node_new(15, INT);
+    Nodeptr n2 = Node_new(24, INT);
     Node_setNext(n1, n2);
     printf("Here's the value of n1: %d\nHere's the value of n2: %d\n",Node_getValue(n1), Node_getValue(n2));
     printf("Here's the value of n1's next node: %d\n",n1->next->val);
+
    
     // Now that we're done with this, we want to destroy the nodes & null out the variables
     Node_destroy(n1);
@@ -30,16 +31,16 @@ int main()
     printf("=-=-=-=-=-=-=- End List Testing =-=-=-=-=-=-=-\n");
 }
 
-void testEmptyList(Listptr l)
+void testEmptyList(Listptr listVar)
 {
     printf("[Empty List Test] Starting List: ");
-    List_printList(l);
+    List_printList(listVar);
     int i = 0;
-    while(l->len > 0)
+    while(listVar->len > 0)
     {
         printf("| ");
-        List_removeAt(l, 0);
-        List_printList(l);
+        List_removeAt(listVar, 0);
+        List_printList(listVar);
         i++;
     }
 }
@@ -52,7 +53,7 @@ void testCreateList(Listptr l, int vals[])
     for(int i = 0; i < 5; i++)
     {
         printf("| ");
-        List_addValue(l, vals[i]);
+        List_addValue(l, vals[i], INT);
         List_printList(l);
     }
 }

@@ -16,10 +16,10 @@ typedef List * Listptr;
 
 Listptr List_new();
 void List_init(Listptr l);
-void List_addValue(Listptr self, int val);
+void List_addValue(Listptr self, void* val, dataType type);
 void List_printList(Listptr self);
 Nodeptr List_walkToIndex(Listptr self, int index);
-void List_insert(Listptr self, int index, int val);
+void List_insert(Listptr self, int index, void* val, dataType type);
 void List_removeAt(Listptr self, int index);
 
 
