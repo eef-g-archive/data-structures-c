@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include<stdlib.h>
 
-void testEmptyList(Listptr l);
-void testCreateList(Listptr l, int vals[]);
 
 int main()
 {
@@ -25,35 +23,27 @@ int main()
     printf("=-=-=-=-=-=-=- List Testing =-=-=-=-=-=-=-\n");
     int listVals[5] = {13, 25, 7, 18, 2};
     Listptr l = List_new();
-    testCreateList(l, listVals);
-    testEmptyList(l);
-    testCreateList(l, listVals);
-    printf("=-=-=-=-=-=-=- End List Testing =-=-=-=-=-=-=-\n");
-}
-
-void testEmptyList(Listptr listVar)
-{
-    printf("[Empty List Test] Starting List: ");
-    List_printList(listVar);
-    int i = 0;
-    while(listVar->len > 0)
-    {
-        printf("| ");
-        List_removeAt(listVar, 0);
-        List_printList(listVar);
-        i++;
-    }
-}
-
-
-void testCreateList(Listptr l, int vals[])
-{
-    printf("[Adding Values test] Starting List: ");
-    List_printList(l);
     for(int i = 0; i < 5; i++)
     {
-        printf("| ");
-        List_addValue(l, vals[i], INT);
-        List_printList(l);
+        List_addValue(l, listVals[i], INT);
     }
+    List_addValue(l, "Hello!", STRING);
+    List_printList(l);
+
+    // How to add a double to the list (It's really weird bc of the void*)
+    double x = 3.5; // Step 1: Have your double variable
+    List_addValue(l, &x, DOUBLE); // Step 2: Pass in a POINTER to the function
+    // ^^ For this line, we use '&x' because the '&' lets the compiler know it's a pointer
+    // We use the pointer for a few reasons:
+    /*
+        1) The compiler errors out when you use a double and not a double pointer
+        2) The way doubles are stored in memory is completely different from how the void* data type works
+           Because of this, we simply cannot pass a double straight to the list if it uses a void* for generics
+    */
+    List_printList(l);
+
+
+    List_destroy(l);
+    l = NULL;
+    printf("=-=-=-=-=-=-=- End List Testing =-=-=-=-=-=-=-\n");
 }

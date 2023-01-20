@@ -4,32 +4,33 @@
 #include "node.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory.h>
 
 
 /* Constructor Functions */
-Nodeptr Node_new(int val, dataType type)
+Nodeptr Node_new(void* val, dataType type)
 {
     Nodeptr n = (Nodeptr)malloc(sizeof(Node));
     Node_init(n, val, type);
     return n;
 }
 
-void Node_init(Nodeptr n, int val, dataType type)
+void Node_init(Nodeptr self, void* val, dataType type)
 {
-    n->val = val;
-    n->type = type;
+    self->val = val;
+    self->type = type;
 }
 
 
 /* Getters & Setters */
-int Node_getValue(Nodeptr n)
+int Node_getValue(Nodeptr self)
 {
-    return n->val;
+    return self->val;
 }
 
-void Node_setValue(Nodeptr n, int val)
+void Node_setValue(Nodeptr self, int val)
 {
-    n->val = val;
+    self->val = val;
 }
 
 void Node_setNext(Nodeptr self, Nodeptr next)
@@ -37,83 +38,43 @@ void Node_setNext(Nodeptr self, Nodeptr next)
     self->next = next;
 }
 
-/* Deconstructor */
-void Node_reset(Nodeptr n) {}
-
-void Node_destroy(Nodeptr n)
+/* Misc Functions */
+void Node_printVal(Nodeptr self)
 {
-    if (n)
+    switch (self->type)
     {
-        Node_reset(n);
-        free(n);
+    case INT:
+        /* code */
+        printf("%d", self->val);
+        break;
+    
+    case STRING:
+        printf("%s", self->val);
+        break;
+    
+    case CHAR:
+        printf("%c", self->val);
+        break;
+    
+    case DOUBLE:
+        double d;
+        memcpy(&d, self->val, sizeof(d));
+        printf("%.2f", d);
+        break;
+    
+    default:
+        break;
     }
-
 }
 
+/* Deconstructor */
+void Node_reset(Nodeptr self) {}
 
-
-
-
-/*
-    OLD NODE CODE
-    - Uses previous OOP method
-*/
-
-// /* Node Methods */
-
-// // Author: Ethan Gray
-// // Purpose: This serves as an example of a getter method (However, at this moment I don't know how to set the protection of object's values)
-// static int checkValue(struct Node *this)
-// {
-//     return this->val;
-// }
-
-// // Author: Ethan Gray
-// // Purpose: This serves as an example of a setter method
-// static void setNext(struct Node *this, struct Node* n)
-// {
-//     this->next = n;
-// }
-
-// // Author: Ethan Gray
-// // Purpose: Prints out the 'object' to the terminal. (Ideally would want it to return the string, but idk how to do that yet.)
-// static  void toString(struct Node *this)
-// {
-//     if (this->next != NULL)
-//     {
-//         printf("Node with value of '%d' that points to a node with value of '%d'\n", this->val, this->next->val);
-//     }
-//     else
-//     {
-//         printf("Node with value of '%d' with no next node.\n", this->val);
-//     }
-// }
-
-
-// /* Node Constructor */
-// static struct Node new(int value, int id)
-// {
-//     // In this return statement, we have the curly brackets
-//     // This is beccause we need to assign SOMETHING to each item within the struct of our class object
-//     // How do we assign each thing to that object?
-//     //     - For the variables in the class, we do .<CLASS_VARIABLE_NAME>=<VALUE>
-//     //     - For any methods, we do .<CLASS_METHOD_NAME>=<.C_METHOD_NAME>
-
-//     // NOTE: For the mentioned assignments above, the <CLASS_METHOD_NAME> and <.C_METHOD_NAME> need to be the same name (Case Sensitive)
-//     //       This is because we do not write the actual implementation of the function in the .h file, but in the .c file. 
-//     //       And what this does essentially gives the object's struct the definition of the function by hooking it back up to the struct
-//     return (struct Node)
-//     {
-//         .val=value,
-//         .next=NULL,
-//         .id=id,
-//         // For functions, when you set it equal, do NOT in clude the '()' at the end of the function name.
-//         .checkValue=checkValue,
-//         .setNext=setNext,
-//         .toString=toString
-//     };
-// }
-
-
-// // This is what is run when we call the .new() function and allows for the actual creation of a new 'Object'
-// const struct NodeClass Node={.new=new};
+void Node_destroy(Nodeptr self)
+{
+    if (self)
+    {
+        Node_reset(self);
+        free(self);
+    }
+}

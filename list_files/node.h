@@ -19,12 +19,13 @@ typedef Node * Nodeptr;
 
 
 /* functions */
-Nodeptr Node_new(int val, dataType type);
-void Node_init(Nodeptr n, int val, dataType type);
-int Node_getValue(Nodeptr n);
-void Node_setValue(Nodeptr n, int value);
+Nodeptr Node_new(void* val, dataType type);
+void Node_init(Nodeptr self, void* val, dataType type);
+int Node_getValue(Nodeptr self);
+void Node_setValue(Nodeptr self, int value);
 void Node_setNext(Nodeptr self, Nodeptr next);
-void Node_reset(Nodeptr n);
-void Node_destroy(Nodeptr n);
+void Node_reset(Nodeptr self);
+void Node_destroy(Nodeptr self);
+void Node_printVal(Nodeptr self);
 
 #endif

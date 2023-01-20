@@ -65,11 +65,12 @@ void List_printList(Listptr self)
         {
             if(i != self->len-1)
             {
-                printf("%d, ",Node_getValue(n));
+                Node_printVal(n);
+                printf(", ");
             }
             else
             {
-                printf("%d ", Node_getValue(n));
+                Node_printVal(n);
             }
             n = n->next;
         }
@@ -92,7 +93,6 @@ void List_insert(Listptr self, int index, void* val, dataType type)
 
 
 
-// removeAt works, however need to figure out how to make it work if you removeAt the start of the list
 
 void List_removeAt(Listptr self, int index)
 {
@@ -125,4 +125,24 @@ void List_removeAt(Listptr self, int index)
         del = NULL;
     }
     self->len--;
+}
+
+/* Deconstructors */
+
+void List_clear(Listptr self)
+{
+    while(self->head->next != NULL)
+    {
+        List_removeAt(self, 0);
+    }
+    List_removeAt(self, 0);
+}
+
+void List_destroy(Listptr self)
+{
+    if(self)
+    {
+        List_clear(self);
+        free(self);
+    }
 }
