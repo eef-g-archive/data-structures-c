@@ -43,26 +43,32 @@ void Node_printVal(Nodeptr self)
     switch (self->type)
     {
     case INT:
+    {
         /* code */
         printf("%d", self->val);
         break;
-    
+    }
     case STRING:
+    {
         printf("%s", self->val);
         break;
-    
+    }
     case CHAR:
+    {
         printf("%c", self->val);
         break;
-    
+    }
     case DOUBLE:
+    {
         double *temporaryDoublePointer = self->val;
         double temporaryDoubleStorage = *temporaryDoublePointer;
         printf("%.2f", temporaryDoubleStorage);
         break;
-    
+    }
     default:
+    {
         break;
+    }
     }
 }
 
