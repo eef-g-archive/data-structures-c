@@ -22,54 +22,87 @@ void Node_init(Nodeptr self, void* val, dataType type)
 
 
 /* Getters & Setters */
-int Node_getValue(Nodeptr self)
+
+// Returns the data stored in self->val
+void* Node_getValue(Nodeptr self)
 {
     return self->val;
 }
 
-void Node_setValue(Nodeptr self, int val)
+// Changes the data stored in self->val and also updates the self->size value
+void Node_setValue(Nodeptr self, void* val)
 {
     self->val = val;
+    self->size = sizeof(val);
 }
 
-void Node_setNext(Nodeptr self, Nodeptr next)
-{
-    self->next = next;
-}
 
 /* Misc Functions */
+
+// Prints the value of the node depending on the type variable
 void Node_printVal(Nodeptr self)
 {
     switch (self->type)
     {
-    case INT:
+        case INT:
+        {
+            /* code */
+            printf("%d", self->val);
+            break;
+        }
+        case STRING:
+        {
+            printf("%s", self->val);
+            break;
+        }
+        case CHAR:
+        {
+            printf("%c", self->val);
+            break;
+        }
+        case DOUBLE:
+        {
+            double *temporaryDoublePointer = self->val;
+            double temporaryDoubleStorage = *temporaryDoublePointer;
+            printf("%.2f", temporaryDoubleStorage);
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+}
+
+void Node_printNode(Nodeptr self)
+{
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("| Node with value: ");
+    Node_printVal(self);
+    printf("\n| Next pointer: ");
+    if(self->next != NULL)
     {
-        /* code */
-        printf("%d", self->val);
-        break;
+        printf("Node with value [");
+        Node_printVal(self->next);
+        printf("]\n");
     }
-    case STRING:
+    else
     {
-        printf("%s", self->val);
-        break;
+        printf("NULL\n");
     }
-    case CHAR:
+
+    printf("| Prev pointer: ");
+    if(self->prev != NULL)
     {
-        printf("%c", self->val);
-        break;
+        printf("Node with value [");
+        Node_printVal(self->prev);
+        printf("]\n");
     }
-    case DOUBLE:
+    else
     {
-        double *temporaryDoublePointer = self->val;
-        double temporaryDoubleStorage = *temporaryDoublePointer;
-        printf("%.2f", temporaryDoubleStorage);
-        break;
+        printf("NULL\n");
     }
-    default:
-    {
-        break;
-    }
-    }
+    printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
 
 /* Deconstructor */
