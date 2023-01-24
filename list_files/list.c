@@ -1,4 +1,3 @@
-// Author: Ethan Gray
 // Purpose: Implementation of all the methods in the 'list.h' file to make a Linked List
 
 #include "node.h"
@@ -9,9 +8,9 @@
 /* Constructor */
 Listptr List_new()
 {
-    Listptr l = (Listptr)malloc(sizeof(List));
-    List_init(l);
-    return l;
+    Listptr returnedPointer = (Listptr)malloc(sizeof(List));
+    List_init(returnedPointer);
+    return returnedPointer;
 }
 
 void List_init(Listptr l)
@@ -23,18 +22,18 @@ void List_init(Listptr l)
 void List_addValue(Listptr self, void* val, dataType type)
 {
     // First, make the node
-    Nodeptr n = Node_new(val, type);
+    Nodeptr newNode = Node_new(val, type);
 
     if(self->len == 0)
     {
-        self->head = n;
-        self->tail = n;
+        self->head = newNode;
+        self->tail = newNode;
     }
     else
     {
-        Node_setNext(self->tail, n);
-        n->prev = self->tail;
-        self->tail = n;
+        Node_setNext(self->tail, newNode);
+        newNode->prev = self->tail;
+        self->tail = newNode;
     }
     self->len++;
 }
@@ -44,15 +43,13 @@ void List_addValue(Listptr self, void* val, dataType type)
 
 Nodeptr List_walkToIndex(Listptr self, int index)
 {
-    Nodeptr curr = self->head;
-
-    // Will add an "Out of Index" error if it's too large or small.
+    Nodeptr currentNode = self->head;
 
     for(int i = 0; i < index; i++)
     {
-        curr = curr->next;
+        currentNode = currentNode->next;
     }
-    return curr;
+    return currentNode;
 }
 
 void List_printList(Listptr self)
@@ -84,10 +81,10 @@ void List_printList(Listptr self)
 
 void List_insert(Listptr self, int index, void* val, dataType type)
 {
-    Nodeptr node = Node_new(val, type);
-    Nodeptr listNode = List_walkToIndex(self, index - 1);
-    node->next = listNode->next;
-    listNode->next = node;
+    Nodeptr newNode = Node_new(val, type);
+    Nodeptr nodeAtIndex = List_walkToIndex(self, index - 1);
+    newNode->next = nodeAtIndex->next;
+    nodeAtIndex->next = newNode;
     self->len++;
 }
 
@@ -99,33 +96,46 @@ void List_removeAt(Listptr self, int index)
     // Check to make sure we're not removing the head of the list
     if (index != 0)
     {
-        Nodeptr del = List_walkToIndex(self, index);
-        Nodeptr delPrev = del->prev;
-        delPrev->next = del->next;
-        Node_destroy(del);
+        Nodeptr nodeToDelete = List_walkToIndex(self, index);
+        Nodeptr previousNode = nodeToDelete->prev;
+        previousNode->next = nodeToDelete->next;
+        Node_destroy(nodeToDelete);
         if(index == self->len)
         {
-            self->tail = delPrev;
+            self->tail = previousNode;
         }
     }
     // If we are, then make the precautions needed
     else
     {
-        Nodeptr del = List_walkToIndex(self, index);
+        Nodeptr nodeToDelete = List_walkToIndex(self, index);
         if(self->len > 1)
         {
-            self->head = del->next;
+            self->head = nodeToDelete->next;
         }
         else
         {
             self->head = NULL;
             self->tail = NULL;
         }
-        Node_destroy(del);
-        del = NULL;
+        Node_destroy(nodeToDelete);
+        nodeToDelete = NULL;
     }
     self->len--;
 }
+
+// For sorting: 
+/*
+    - Will want to keep track of the address of the data in a node
+    - These addresses give us normal integers (technically)
+    - We use those addresses to sort the values based off of where they are in memory
+    - We'll only need this type of sorting because that's what the memory manager is going to use
+
+    -- OTHER WAY:
+     - Look at the value of the data in the node
+     - Sort by value of the data (This requires you to have a way to compare all types of data if the list is mixed)
+*/
+
 
 /* Deconstructors */
 

@@ -1,4 +1,3 @@
-// Author: Ethan Gray
 // Purpose: Implementation of all the methods in the 'node.h' file
 
 #include "node.h"
@@ -10,9 +9,9 @@
 /* Constructor Functions */
 Nodeptr Node_new(void* val, dataType type)
 {
-    Nodeptr n = (Nodeptr)malloc(sizeof(Node));
-    Node_init(n, val, type);
-    return n;
+    Nodeptr returnedPointer = (Nodeptr)malloc(sizeof(Node));
+    Node_init(returnedPointer, val, type);
+    return returnedPointer;
 }
 
 void Node_init(Nodeptr self, void* val, dataType type)

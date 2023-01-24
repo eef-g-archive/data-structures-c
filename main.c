@@ -11,7 +11,7 @@ int main()
     Node_setNext(n1, n2);
     printf("Here's the value of n1: %d\nHere's the value of n2: %d\n",Node_getValue(n1), Node_getValue(n2));
     printf("Here's the value of n1's next node: %d\n",n1->next->val);
-
+    printf("Here's the size of the first node's data: %d\n",n1->size);
    
     // Now that we're done with this, we want to destroy the nodes & null out the variables
     Node_destroy(n1);
