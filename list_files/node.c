@@ -57,9 +57,9 @@ void Node_printVal(Nodeptr self)
         break;
     
     case DOUBLE:
-        double d;
-        memcpy(&d, self->val, sizeof(d));
-        printf("%.2f", d);
+        double temporaryDoubleStorage;
+        memcpy(&temporaryDoubleStorage, self->val, sizeof(temporaryDoubleStorage));
+        printf("%.2f", temporaryDoubleStorage);
         break;
     
     default:
