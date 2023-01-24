@@ -124,6 +124,20 @@ void List_removeAt(Listptr self, int index)
     self->len--;
 }
 
+Nodeptr List_findNodebyValue(Listptr self, void* val)
+{
+    Nodeptr currentNode = self->head;
+    for(int i = 0; i < self->len; i++)
+    {
+        if (currentNode->val == val)
+        {
+            return currentNode;
+        }
+        currentNode = currentNode->next;
+    }
+    return NULL;
+}
+
 // For sorting: 
 /*
     - Will want to keep track of the address of the data in a node
