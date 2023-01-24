@@ -19,6 +19,7 @@ void Node_init(Nodeptr self, void* val, dataType type)
 {
     self->val = val;
     self->type = type;
+    self->size = sizeof(val);
 }
 
 

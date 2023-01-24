@@ -12,6 +12,7 @@ typedef struct Node
     struct Node* next;
     struct Node* prev;
     dataType type;
+    int size;
 } Node;
 
 
