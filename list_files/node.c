@@ -3,7 +3,6 @@
 #include "node.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <memory.h>
 
 
 /* Constructor Functions */
@@ -57,8 +56,8 @@ void Node_printVal(Nodeptr self)
         break;
     
     case DOUBLE:
-        double temporaryDoubleStorage;
-        memcpy(&temporaryDoubleStorage, self->val, sizeof(temporaryDoubleStorage));
+        double *temporaryDoublePointer = self->val;
+        double temporaryDoubleStorage = *temporaryDoublePointer;
         printf("%.2f", temporaryDoubleStorage);
         break;
     
