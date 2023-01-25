@@ -218,6 +218,19 @@ void List_addressSort(Listptr self)
 }
 
 
+void* List_dump(Listptr self)
+{
+    void * outputArray[self->len];
+
+    Nodeptr currentNode = self->head;
+    for(int i = 0; i < self->len - 1; i++)
+    {
+        outputArray[i] = currentNode->val;
+        currentNode = currentNode->next;
+    }
+    return outputArray;
+}
+
 /* Deconstructors */
 
 void List_clear(Listptr self)
