@@ -196,7 +196,6 @@ void List_addressSort(Listptr self)
         {
             indexIAddress = (void *)List_walkToIndex(self, i)->val;
             indexJAddress = (void *)List_walkToIndex(self, j)->val;
-            printf("%p | %p\n", indexIAddress, indexJAddress);
 
             if(indexJAddress < indexIAddress)
             {
