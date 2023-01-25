@@ -182,6 +182,12 @@ void List_valueSort(Listptr self)
         }
         _shuffle(self, i, sort_index);
     }
+
+    // Need this last if-statement to error check for the shortcoming of the for-loop
+    if(self->head->val > self->head->next->val)
+    {
+        _shuffle(self, 0, 1);
+    }
 }
 
 void List_addressSort(Listptr self)
@@ -203,6 +209,11 @@ void List_addressSort(Listptr self)
             }
         }
         _shuffle(self, i, sort_index);
+    }
+
+    if ( (void *)self->head->val > (void *) self->head->next->val)
+    {
+        _shuffle(self, 0, 1);
     }
 }
 
