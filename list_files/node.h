@@ -18,7 +18,6 @@ typedef struct Node
 
 typedef Node * Nodeptr;
 
-
 /* functions */
 Nodeptr Node_new(void* val, dataType type);
 void Node_init(Nodeptr self, void* val, dataType type);

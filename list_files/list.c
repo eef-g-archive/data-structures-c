@@ -217,8 +217,8 @@ void List_addressSort(Listptr self)
     }
 }
 
-
-void* List_dump(Listptr self)
+//needs work to print out values from each node
+void List_dump(Listptr self) 
 {
     void * outputArray[self->len];
 
@@ -228,7 +228,6 @@ void* List_dump(Listptr self)
         outputArray[i] = currentNode->val;
         currentNode = currentNode->next;
     }
-    return outputArray;
 }
 
 /* Deconstructors */
