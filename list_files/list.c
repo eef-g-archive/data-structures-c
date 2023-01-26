@@ -6,6 +6,7 @@
 #include <stdint.h>
 
 /* Constructor */
+
 Listptr List_new()
 {
     Listptr returnedPointer = (Listptr)malloc(sizeof(List));
@@ -18,7 +19,9 @@ void List_init(Listptr l)
     l->len=0;
 }
 
+
 /* Getters & Setters */
+
 void List_addValue(Listptr self, void* val, dataType type)
 {
     // First, make the node
@@ -31,7 +34,7 @@ void List_addValue(Listptr self, void* val, dataType type)
     }
     else
     {
-        Node_setNext(self->tail, newNode);
+        self->tail->next = newNode;
         newNode->prev = self->tail;
         self->tail = newNode;
     }
@@ -51,6 +54,7 @@ Nodeptr List_walkToIndex(Listptr self, int index)
     }
     return currentNode;
 }
+
 
 void List_printList(Listptr self)
 {
@@ -90,7 +94,6 @@ void List_insert(Listptr self, int index, void* val, dataType type)
 
 
 
-
 void List_removeAt(Listptr self, int index)
 {
     // Check to make sure we're not removing the head of the list
@@ -124,18 +127,109 @@ void List_removeAt(Listptr self, int index)
     self->len--;
 }
 
-// For sorting: 
-/*
-    - Will want to keep track of the address of the data in a node
-    - These addresses give us normal integers (technically)
-    - We use those addresses to sort the values based off of where they are in memory
-    - We'll only need this type of sorting because that's what the memory manager is going to use
 
-    -- OTHER WAY:
-     - Look at the value of the data in the node
-     - Sort by value of the data (This requires you to have a way to compare all types of data if the list is mixed)
-*/
 
+Nodeptr List_findNodebyValue(Listptr self, void* val)
+{
+    Nodeptr currentNode = self->head;
+    for(int i = 0; i < self->len; i++)
+    {
+        if (currentNode->val == val)
+        {
+            return currentNode;
+        }
+        currentNode = currentNode->next;
+    }
+    return NULL;
+}
+
+
+Nodeptr List_unlinkNodebyValue(Listptr self, void* val)
+{
+    Nodeptr nodeToUnlink = List_findNodebyValue(self, val);
+    if(nodeToUnlink)
+    {
+        printf("Unlinking node\n");
+        nodeToUnlink->prev->next = nodeToUnlink->next;
+        nodeToUnlink->prev = NULL;
+        nodeToUnlink->next = NULL;
+        self->len--;
+        return nodeToUnlink;
+    }
+    return NULL;
+}
+
+
+void _shuffle(Listptr self, int firstIndex, int secondIndex)
+{
+    void* temporaryValueHolder = List_walkToIndex(self, firstIndex)->val;
+    List_walkToIndex(self, firstIndex)->val = List_walkToIndex(self, secondIndex)->val;
+    List_walkToIndex(self, secondIndex)->val = temporaryValueHolder;
+}
+
+void List_valueSort(Listptr self)
+{
+    int sort_index;
+    for(int i = 0; i < self->len; i++)
+    {
+        sort_index = i;
+        for(int j = i; j < self->len; j++)
+        {
+            if(List_walkToIndex(self, j)->val < List_walkToIndex(self, i)->val)
+            {
+                sort_index = j;
+            }
+        }
+        _shuffle(self, i, sort_index);
+    }
+
+    // Need this last if-statement to error check for the shortcoming of the for-loop
+    if(self->head->val > self->head->next->val)
+    {
+        _shuffle(self, 0, 1);
+    }
+}
+
+void List_addressSort(Listptr self)
+{
+    int sort_index;
+    void* indexIAddress;
+    void* indexJAddress;
+    for(int i = 0; i < self->len; i++)
+    {
+        sort_index = i;
+        for(int j = i; j < self->len; j++)
+        {
+            indexIAddress = (void *)List_walkToIndex(self, i)->val;
+            indexJAddress = (void *)List_walkToIndex(self, j)->val;
+
+            if(indexJAddress < indexIAddress)
+            {
+                sort_index = j;
+            }
+        }
+        _shuffle(self, i, sort_index);
+    }
+
+    if ( (void *)self->head->val > (void *) self->head->next->val)
+    {
+        _shuffle(self, 0, 1);
+    }
+}
+
+
+void* List_dump(Listptr self)
+{
+    void * outputArray[self->len];
+
+    Nodeptr currentNode = self->head;
+    for(int i = 0; i < self->len - 1; i++)
+    {
+        outputArray[i] = currentNode->val;
+        currentNode = currentNode->next;
+    }
+    return outputArray;
+}
 
 /* Deconstructors */
 
