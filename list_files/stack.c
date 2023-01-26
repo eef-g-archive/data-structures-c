@@ -4,23 +4,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//constructor function
+//Initializes the pointers and allocates memory
 Stackptr Stack_new()
 {
     Stackptr returnedPointer = (Stackptr)malloc(sizeof(Stack));
     Stack_init(returnedPointer);
     return returnedPointer;
 }
+//Constructor that uses List Class Functions
 void Stack_init(Stackptr s)
 {
     s->Stack_Backend = List_new(); //initializes a new stack, which uses the list function
 }
-//push function
+//push function; uses List Class Add Value Function
 void Stack_Push(Stackptr self, void* val)
 {
     List_addValue(self->Stack_Backend, val, INT);
 }
-//pop function
+//pop function; uses List Class Walk To IDX and Remove At Functions
 void* Stack_Pop(Stackptr self)
 {
     int len = self->Stack_Backend->len;
@@ -30,3 +31,7 @@ void* Stack_Pop(Stackptr self)
     return node_val;
 }
 
+void Stack_Print(Stackptr self)
+{
+    List_printList(self->Stack_Backend);
+}
