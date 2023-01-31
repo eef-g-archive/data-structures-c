@@ -16,7 +16,7 @@ int main()
     // Testing to make sure head and tail pointers work
     if(test_stack->Stack_Backend->head->val == 800)
     {
-        printf("Test 1 passed.\n");
+        printf("Test 1 Passed: Valid Head Node/Pointers\n");
     }
     else 
     { 
@@ -27,7 +27,7 @@ int main()
 
     if (test_stack->Stack_Backend->tail->val == 15)
     {
-        printf("Test 2 passed.\n");
+        printf("Test 2 Passed: Valid Tail Node/Pointer\n");
     }
     else
     {
@@ -36,14 +36,24 @@ int main()
         printf("'\n");
     }
 
-    // Test Finding a value
-    if(List_findNodebyValue(test_stack->Stack_Backend, 0))
+    if(Stack_Pop(test_stack->Stack_Backend) == 15)
     {
-        printf("Test 3 passed.\n");
+        printf("Test 3 Passed: Pop Function");
     }
     else
     {
-        printf("Test 3 failed! Could not find node with value '0' in list.\n");
+        printf("Test 3 Failed");
+    }
+
+    // Test Finding a value
+    
+    if(Stack_findNodebyValue(test_stack, 0))
+    {
+        printf("Test 4 passed.\n");
+    }
+    else
+    {
+        printf("Test 4 failed! Could not find node with value '0' in list.\n");
     }
 
     // Test sorting by value

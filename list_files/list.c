@@ -127,8 +127,6 @@ void List_removeAt(Listptr self, int index)
     self->len--;
 }
 
-
-
 Nodeptr List_findNodebyValue(Listptr self, void* val)
 {
     Nodeptr currentNode = self->head;

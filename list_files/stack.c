@@ -31,6 +31,11 @@ void* Stack_Pop(Stackptr self)
     return node_val;
 }
 
+void* Stack_findNodebyValue(Stackptr self, void* val)
+{
+    return List_findNodebyValue(self->Stack_Backend, val);
+}
+
 void Stack_Print(Stackptr self)
 {
     List_printList(self->Stack_Backend);
