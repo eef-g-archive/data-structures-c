@@ -55,7 +55,4 @@ int main()
     {
         printf("Test 4 failed! Could not find node with value '0' in list.\n");
     }
-
-    printf("Correct Output: {800, 77, 1, 40, 0, 15}");
-    Stack_Print(test_stack);
 }
