@@ -58,6 +58,7 @@ Nodeptr List_walkToIndex(Listptr self, int index)
 
 void List_printList(Listptr self)
 {
+
     if(self->len > 0)
     {
         printf("[ ");

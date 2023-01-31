@@ -45,7 +45,7 @@ void Node_printVal(Nodeptr self)
         case INT:
         {
             /* code */
-            printf("%d", *(int*)self->val); //casts void* val ptr to int*, then dereferences (tells me what the pointer is pointing at)
+            printf("%d", (int*)self->val); //casts void* val ptr to int*, then dereferences (tells me what the pointer is pointing at)
             break;
         }
         case STRING:
@@ -55,7 +55,7 @@ void Node_printVal(Nodeptr self)
         }
         case CHAR:
         {
-            printf("%c", *(char*)self->val);
+            printf("%c", (char*)self->val);
             break;
         }
         case DOUBLE:

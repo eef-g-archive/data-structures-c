@@ -6,7 +6,7 @@ int main()
 {
     // Set up the list to test
     Listptr test_list = List_new();
-    int test_list_values[] = {800, 77, 1, 40, 0, 15};
+    int test_list_values[] = {800, 77, 1, 40, 0, 16};
     for(int i = 0; i < 6; i++)
     {
         List_addValue(test_list, test_list_values[i], INT);
@@ -57,4 +57,6 @@ int main()
         Node_printVal(test_list->head);
         printf("'\n");
     }
+
+    List_printList(test_list);
 }
