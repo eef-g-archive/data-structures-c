@@ -37,7 +37,7 @@ int main()
     }
 
     // Test Finding a value
-    if(List_findNodebyValue(test_stack, 0))
+    if(List_findNodebyValue(test_stack->Stack_Backend, 0))
     {
         printf("Test 3 passed.\n");
     }
@@ -47,7 +47,7 @@ int main()
     }
 
     // Test sorting by value
-    List_valueSort(test_stack);
+    List_valueSort(test_stack->Stack_Backend);
     if(test_stack->Stack_Backend->head->val == 0)
     {
         printf("Test 4 passed.\n");
