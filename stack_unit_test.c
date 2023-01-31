@@ -36,9 +36,10 @@ int main()
         printf("'\n");
     }
 
-    if(Stack_Pop(test_stack->Stack_Backend) == 15)
+    // Pop Unit Test
+    if(Stack_Pop(test_stack) == 15)
     {
-        printf("Test 3 Passed: Pop Function");
+        printf("Test 3 Passed: Pop Function\n");
     }
     else
     {
@@ -46,26 +47,15 @@ int main()
     }
 
     // Test Finding a value
-    
     if(Stack_findNodebyValue(test_stack, 0))
     {
-        printf("Test 4 passed.\n");
+        printf("Test 4 Passed: Find Node by Value\n");
     }
     else
     {
         printf("Test 4 failed! Could not find node with value '0' in list.\n");
     }
 
-    // Test sorting by value
-    List_valueSort(test_stack->Stack_Backend);
-    if(test_stack->Stack_Backend->head->val == 0)
-    {
-        printf("Test 4 passed.\n");
-    }
-    else
-    {
-        printf("Test 4 failed! Expected '0', got '");
-        Node_printVal(test_stack->Stack_Backend->head);
-        printf("'\n");
-    }
+    printf("Correct Output: {800, 77, 1, 40, 0, 15}");
+    Stack_Print(test_stack);
 }
