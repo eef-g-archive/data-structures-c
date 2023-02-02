@@ -13,7 +13,7 @@ int main()
     }
 
 
-    // Testing to make sure head and tail pointers work
+    // Head Pointer
     if(test_list->head->val == 800)
     {
         printf("Test 1 passed. Valid Head Node/Pointer Value\n");
