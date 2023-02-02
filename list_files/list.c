@@ -7,6 +7,7 @@
 
 /* Constructor */
 
+// Make a new List object on the heap and return a Listptr to that object
 Listptr List_new()
 {
     Listptr returnedPointer = (Listptr)malloc(sizeof(List));
@@ -14,6 +15,7 @@ Listptr List_new()
     return returnedPointer;
 }
 
+// Initialize any variables that the list struct needs imediately
 void List_init(Listptr l)
 {
     l->len=0;
@@ -22,6 +24,7 @@ void List_init(Listptr l)
 
 /* Getters & Setters */
 
+// Add a value at the END of the linked list
 void List_addValue(Listptr self, void* val, dataType type)
 {
     // First, make the node
@@ -44,6 +47,7 @@ void List_addValue(Listptr self, void* val, dataType type)
 
 /* Other Methods */
 
+// Returns the node object at a specific index within the Linked List
 Nodeptr List_walkToIndex(Listptr self, int index)
 {
     Nodeptr currentNode = self->head;
@@ -55,7 +59,10 @@ Nodeptr List_walkToIndex(Listptr self, int index)
     return currentNode;
 }
 
-
+/* Prints the entire Linked List to the terminal.
+ Makes use of Node_printVal to ensure different types of data are 
+ printed correctly.
+*/
 void List_printList(Listptr self)
 {
 
@@ -84,7 +91,10 @@ void List_printList(Listptr self)
     }
 }
 
-void List_insert(Listptr self, int index, void* val, dataType type)
+/* Inserts a value at the index given in the Linked List.
+   Pushes the existing value at index to index+1 in the list.
+*/
+void List_insertBefore(Listptr self, int index, void* val, dataType type)
 {
     Nodeptr newNode = Node_new(val, type);
     Nodeptr nodeAtIndex = List_walkToIndex(self, index - 1);
@@ -93,8 +103,21 @@ void List_insert(Listptr self, int index, void* val, dataType type)
     self->len++;
 }
 
+/* Inserts a value at the index AFTER the index given in the Linked List.
+   Keeps the value at index where it is, but the given value will be in index+1
+*/
+void List_insertAfter(Listptr self, int index, void* val, dataType type)
+{
+    Nodeptr newNode = Node_new(val, type);
+    Nodeptr nodeAtIndex = List_walkToIndex(self, index);
+    newNode->next = nodeAtIndex->next;
+    nodeAtIndex->next->prev = newNode;
+    nodeAtIndex->next = newNode;
+    newNode->prev = nodeAtIndex;
+    self->len++;
+}
 
-
+// Removes an item from the Linked List at index.
 void List_removeAt(Listptr self, int index)
 {
     // Check to make sure we're not removing the head of the list
@@ -128,6 +151,7 @@ void List_removeAt(Listptr self, int index)
     self->len--;
 }
 
+// Returns a Nodeptr object for the first node found with the given val in the Linked List. Returns NULL if nothing found.
 Nodeptr List_findNodebyValue(Listptr self, void* val)
 {
     Nodeptr currentNode = self->head;
@@ -142,7 +166,7 @@ Nodeptr List_findNodebyValue(Listptr self, void* val)
     return NULL;
 }
 
-
+// Finds a Node with the given value and unlinks it from the list. Returns the Nodeptr object.
 Nodeptr List_unlinkNodebyValue(Listptr self, void* val)
 {
     Nodeptr nodeToUnlink = List_findNodebyValue(self, val);
@@ -158,7 +182,7 @@ Nodeptr List_unlinkNodebyValue(Listptr self, void* val)
     return NULL;
 }
 
-
+// Takes 2 indexes and swaps their values in the Linked List.
 void _shuffle(Listptr self, int firstIndex, int secondIndex)
 {
     void* temporaryValueHolder = List_walkToIndex(self, firstIndex)->val;
@@ -166,6 +190,7 @@ void _shuffle(Listptr self, int firstIndex, int secondIndex)
     List_walkToIndex(self, secondIndex)->val = temporaryValueHolder;
 }
 
+// Sorts the given Linked List by the values it stores.
 void List_valueSort(Listptr self)
 {
     int sort_index;
@@ -189,6 +214,7 @@ void List_valueSort(Listptr self)
     }
 }
 
+// Sorts the given Linked List by the memory addresses of the values within it.
 void List_addressSort(Listptr self)
 {
     int sort_index;
@@ -216,21 +242,10 @@ void List_addressSort(Listptr self)
     }
 }
 
-//needs work to print out values from each node
-void List_dump(Listptr self) 
-{
-    void * outputArray[self->len];
-
-    Nodeptr currentNode = self->head;
-    for(int i = 0; i < self->len - 1; i++)
-    {
-        outputArray[i] = currentNode->val;
-        currentNode = currentNode->next;
-    }
-}
 
 /* Deconstructors */
 
+// Clears the values from the Linked List to make it empty.
 void List_clear(Listptr self)
 {
     while(self->head->next != NULL)
@@ -240,6 +255,7 @@ void List_clear(Listptr self)
     List_removeAt(self, 0);
 }
 
+// Clears the Linked List and then frees it from memory.
 void List_destroy(Listptr self)
 {
     if(self)

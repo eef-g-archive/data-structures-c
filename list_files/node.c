@@ -5,6 +5,8 @@
 #include "node.h"
 
 /* Constructor Functions */
+
+// Create a new node object on the heap and return a Nodeptr to that Node
 Nodeptr Node_new(void* val, dataType type)
 {
     Nodeptr returnedPointer = (Nodeptr)malloc(sizeof(Node));
@@ -12,12 +14,14 @@ Nodeptr Node_new(void* val, dataType type)
     return returnedPointer;
 }
 
+// Initialize the values within the node object
 void Node_init(Nodeptr self, void* val, dataType type)
 {
     self->val = val;
     self->type = type;
     self->size = sizeof(val);
 }
+
 
 /* Getters & Setters */
 
@@ -72,6 +76,7 @@ void Node_printVal(Nodeptr self)
     }
 }
 
+// Print out all the data within the node to the terminal. Mainly used for debugging purposes.
 void Node_printNode(Nodeptr self)
 {
     printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
@@ -104,8 +109,18 @@ void Node_printNode(Nodeptr self)
 }
 
 /* Deconstructor */
-void Node_reset(Nodeptr self) {} 
 
+// Make all values of the node = NULL
+void Node_reset(Nodeptr self)
+{
+    self->next = NULL;
+    self->prev = NULL;
+    self->size = NULL;
+    self->type = NULL;
+    self->val = NULL;
+} 
+
+// Clear out the node's data and then free the struct from memory
 void Node_destroy(Nodeptr self)
 {
     if (self)

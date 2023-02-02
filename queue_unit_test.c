@@ -11,25 +11,35 @@ int main()
         Queue_enqueue(test_queue, test_queue_values[i]);
     }
 
+    if( (test_queue->queueBackend->head->val == 800) && (test_queue->queueBackend->tail->val == 15) )
+    {
+        printf("Test 1 passed. Successfully enqueued all test values.\n");
+    }
+    else
+    {
+        printf("Test 1 failed. Beginning of queue is: '%d' | End of queue is: '%d'",
+         test_queue->queueBackend->head->val, test_queue->queueBackend->tail->val);
+    }
+
     void* dequeue_output1 = Queue_dequeue(test_queue);
     void* dequeue_output2 = Queue_dequeue(test_queue);
 
     if(dequeue_output1 == 800)
     {
-        printf("Test 1 passed.\n");
+        printf("Test 2 passed. Successful initial dequeue.\n");
     }    
     else
     {
-        printf("Test 1 failed. Expected '800', got '%d'\n", dequeue_output1);
+        printf("Test 2 failed. Expected '800' to be dequeued, got '%d'\n", dequeue_output1);
     }
 
     if(dequeue_output2 == 77)
     {
-        printf("Test 2 passed.\n");
+        printf("Test 3 passed. Successful secondary dequeue.\n");
     }
     else
     {
-        printf("Test 2 failed. Expected '77', got '%d'\n", dequeue_output2);
+        printf("Test 3 failed. Expected '77' to be dequeued, got '%d'\n", dequeue_output2);
     }
     
 }
