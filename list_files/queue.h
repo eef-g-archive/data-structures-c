@@ -18,5 +18,4 @@ void* Queue_dequeue(Queueptr self);
 void Queue_clear(Queueptr self);
 void Queue_destroy(Queueptr self);
 
-
 #endif

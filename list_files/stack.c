@@ -1,4 +1,5 @@
-//main stack file
+//Purpose: Uses the 'list.h' Functions within renamed Stack Functions to make the Stack Data Structure
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "stack.h"
