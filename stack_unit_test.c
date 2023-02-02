@@ -12,7 +12,7 @@ int main()
     {
         Stack_Push(test_stack, test_stack_values[i], INT);
     }
-
+    
     // Testing to make sure head and tail pointers work
     if(test_stack->Stack_Backend->head->val == 800)
     {
@@ -55,4 +55,6 @@ int main()
     {
         printf("Test 4 failed! Could not find node with value '0' in list.\n");
     }
+
+    Stack_Print(test_stack);
 }
