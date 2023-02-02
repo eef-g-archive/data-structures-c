@@ -3,7 +3,7 @@
 #define NODE_H
 #include <stdlib.h>
 
-typedef enum {INT, CHAR, STRING, DOUBLE} dataType;
+typedef enum {INT, CHAR, STRING, DOUBLE, POINTER} dataType;
 
 typedef struct Node
 {
@@ -13,6 +13,7 @@ typedef struct Node
     struct Node* prev;
     dataType type;
     int size;
+    //*Node_cleanup;
 } Node;
 
 

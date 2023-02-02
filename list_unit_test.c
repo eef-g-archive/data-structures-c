@@ -9,7 +9,7 @@ int main()
     int test_list_values[] = {800, 77, 1, 40, 0, 16};
     for(int i = 0; i < 6; i++)
     {
-        List_addValue(test_list, test_list_values[i], INT);
+        List_addValue(test_list, &test_list_values[i], INT);
     }
 
 

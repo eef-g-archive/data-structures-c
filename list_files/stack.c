@@ -1,7 +1,7 @@
 //main stack file
-#include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "stack.h"
 
 //Initializes the pointers and allocates memory
 Stackptr Stack_new()

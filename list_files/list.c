@@ -1,9 +1,9 @@
 // Purpose: Implementation of all the methods in the 'list.h' file to make a Linked List
 
-#include "node.h"
-#include "list.h"
 #include <stdio.h>
 #include <stdint.h>
+#include "node.h"
+#include "list.h"
 
 /* Constructor */
 
@@ -19,6 +19,8 @@ Listptr List_new()
 void List_init(Listptr l)
 {
     l->len=0;
+    l->head = NULL;
+    l->tail = NULL;
 }
 
 
@@ -123,6 +125,7 @@ void List_removeAt(Listptr self, int index)
     // Check to make sure we're not removing the head of the list
     if (index != 0)
     {
+        // Make sure that there's a prev pointer to fix the list
         Nodeptr nodeToDelete = List_walkToIndex(self, index);
         Nodeptr previousNode = nodeToDelete->prev;
         previousNode->next = nodeToDelete->next;

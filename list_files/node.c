@@ -34,8 +34,11 @@ void* Node_getValue(Nodeptr self)
 // Changes the data stored in self->val and also updates the self->size value
 void Node_setValue(Nodeptr self, void* val)
 {
+    // RN no wayh to set size for pointers`
     self->val = val;
     self->size = sizeof(val);
+    // Know the data type, so if string then
+    // Use strlen(val) + 1 <-- Gives the length of the string & Terminating NULL
 }
 
 
@@ -49,7 +52,7 @@ void Node_printVal(Nodeptr self)
         case INT:
         {
             /* code */
-            printf("%d", (int*)self->val); //casts void* val ptr to int*, then dereferences (tells me what the pointer is pointing at)
+            printf("%d", *(int*)self->val); //casts void* val ptr to int*, then dereferences (tells me what the pointer is pointing at)
             break;
         }
         case STRING:
@@ -59,11 +62,12 @@ void Node_printVal(Nodeptr self)
         }
         case CHAR:
         {
-            printf("%c", (char*)self->val);
+            printf("%c", *(char*)self->val);
             break;
         }
         case DOUBLE:
         {
+            //printf("%.2f", *(double*)self->val);
             double *temporaryDoublePointer = self->val;
             double temporaryDoubleStorage = *temporaryDoublePointer;
             printf("%.2f", temporaryDoubleStorage);
@@ -117,6 +121,15 @@ void Node_reset(Nodeptr self)
     self->prev = NULL;
     self->size = NULL;
     self->type = NULL;
+    // If val is actually a pointer, if you set it to NULL
+    // You lose the pointer that points to the value itself, but not free the data somewhere else
+    // Make sure that it manually frees the node->val just in case.
+
+    // OTHER SOLUTION:
+    /*
+        Add a new variable into the node that is a pointer to the clearnup function
+        In reset, call the clearnup function on self->val
+    */
     self->val = NULL;
 } 
 
