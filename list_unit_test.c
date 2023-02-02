@@ -12,7 +12,8 @@ int main()
         List_addValue(test_list, test_list_values[i], INT);
     }
 
-    // Head Pointer
+
+    // Testing to make sure head and tail pointers work
     if(test_list->head->val == 800)
     {
         printf("Test 1 passed. Valid Head Node/Pointer Value\n");
