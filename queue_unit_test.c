@@ -14,6 +14,7 @@ int main()
     void* dequeue_output1 = Queue_dequeue(test_queue);
     void* dequeue_output2 = Queue_dequeue(test_queue);
 
+    //Initial Dequeue
     if(dequeue_output1 == 800)
     {
         printf("Test 1 passed.\n");
@@ -23,6 +24,7 @@ int main()
         printf("Test 1 failed. Expected '800', got '%d'\n", dequeue_output1);
     }
 
+    //Second Dequeue
     if(dequeue_output2 == 77)
     {
         printf("Test 2 passed.\n");
@@ -31,5 +33,7 @@ int main()
     {
         printf("Test 2 failed. Expected '77', got '%d'\n", dequeue_output2);
     }
+
+    
     
 }

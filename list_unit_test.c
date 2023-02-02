@@ -12,7 +12,7 @@ int main()
         List_addValue(test_list, test_list_values[i], INT);
     }
 
-    // Testing to make sure head and tail pointers work
+    // Head Pointer
     if(test_list->head->val == 800)
     {
         printf("Test 1 passed. Valid Head Node/Pointer Value\n");
@@ -24,6 +24,7 @@ int main()
         printf("'\n");
     }
 
+    // Tail Pointer
     if (test_list->tail->val == 15)
     {
         printf("Test 2 passed. Valid Head Node/Pointer Value\n");
@@ -45,7 +46,7 @@ int main()
         printf("Test 3 failed! Could not find node with value '0' in list.\n");
     }
 
-    // Test sorting by value
+    // Value Sort
     List_valueSort(test_list);
     if(test_list->head->val == 0)
     {
@@ -60,5 +61,6 @@ int main()
 
     //Address Sort Unit Test
 
+    //Print List AND addList Accuracy/Validity Test
     List_printList(test_list);
 }

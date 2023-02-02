@@ -13,7 +13,7 @@ int main()
         Stack_Push(test_stack, test_stack_values[i], INT);
     }
     
-    // Testing to make sure head and tail pointers work
+    // Head Pointer
     if(test_stack->Stack_Backend->head->val == 800)
     {
         printf("Test 1 Passed: Valid Head Node/Pointer\n");
@@ -24,7 +24,8 @@ int main()
         Node_printVal(test_stack->Stack_Backend->head);
         printf("'\n");
     }
-
+    
+    //Tail Pointer
     if (test_stack->Stack_Backend->tail->val == 15)
     {
         printf("Test 2 Passed: Valid Tail Node/Pointer\n");
@@ -56,5 +57,6 @@ int main()
         printf("Test 4 failed! Could not find node with value '0' in list.\n");
     }
 
+    //Tests Functionality of Stack Print AND shows if Stack_Push was successful
     Stack_Print(test_stack);
 }
