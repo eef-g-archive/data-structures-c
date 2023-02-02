@@ -16,7 +16,7 @@ int main()
     // Testing to make sure head and tail pointers work
     if(test_stack->Stack_Backend->head->val == 800)
     {
-        printf("Test 1 Passed: Valid Head Node/Pointers\n");
+        printf("Test 1 Passed: Valid Head Node/Pointer\n");
     }
     else 
     { 

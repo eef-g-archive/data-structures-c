@@ -15,7 +15,7 @@ int main()
     // Testing to make sure head and tail pointers work
     if(test_list->head->val == 800)
     {
-        printf("Test 1 passed.\n");
+        printf("Test 1 passed. Valid Head Node/Pointer Value\n");
     }
     else 
     { 
@@ -26,7 +26,7 @@ int main()
 
     if (test_list->tail->val == 15)
     {
-        printf("Test 2 passed.\n");
+        printf("Test 2 passed. Valid Head Node/Pointer Value\n");
     }
     else
     {
@@ -38,7 +38,7 @@ int main()
     // Test Finding a value
     if(List_findNodebyValue(test_list, 0))
     {
-        printf("Test 3 passed.\n");
+        printf("Test 3 passed. Successful Find Node by Value\n");
     }
     else
     {
@@ -49,7 +49,7 @@ int main()
     List_valueSort(test_list);
     if(test_list->head->val == 0)
     {
-        printf("Test 4 passed.\n");
+        printf("Test 4 Passed. Successful Value Sort\n");
     }
     else
     {
@@ -57,6 +57,8 @@ int main()
         Node_printVal(test_list->head);
         printf("'\n");
     }
+
+    //Address Sort Unit Test
 
     List_printList(test_list);
 }
