@@ -8,9 +8,8 @@ typedef struct Queue
 {
     /* data */
     Listptr queueBackend;
-} Queue;
+} Queue, * Queueptr;
 
-typedef Queue * Queueptr;
 
 Queueptr Queue_new();
 void Queue_init(Queueptr q);

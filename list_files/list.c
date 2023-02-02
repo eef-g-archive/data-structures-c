@@ -125,11 +125,13 @@ void List_removeAt(Listptr self, int index)
     // Check to make sure we're not removing the head of the list
     if (index != 0)
     {
-        // Make sure that there's a prev pointer to fix the list
         Nodeptr nodeToDelete = List_walkToIndex(self, index);
         Nodeptr previousNode = nodeToDelete->prev;
         previousNode->next = nodeToDelete->next;
+        nodeToDelete->next->prev = previousNode;
         Node_destroy(nodeToDelete);
+
+
         if(index == self->len)
         {
             self->tail = previousNode;

@@ -14,10 +14,9 @@ typedef struct Node
     dataType type;
     int size;
     //*Node_cleanup;
-} Node;
+} Node, * Nodeptr;
 
 
-typedef Node * Nodeptr;
 
 /* functions */
 

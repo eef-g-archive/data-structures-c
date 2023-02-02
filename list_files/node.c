@@ -73,6 +73,10 @@ void Node_printVal(Nodeptr self)
             printf("%.2f", temporaryDoubleStorage);
             break;
         }
+        case POINTER:
+        {
+            printf("%p", self->val);
+        }
         default:
         {
             break;
@@ -120,7 +124,6 @@ void Node_reset(Nodeptr self)
     self->next = NULL;
     self->prev = NULL;
     self->size = NULL;
-    self->type = NULL;
     // If val is actually a pointer, if you set it to NULL
     // You lose the pointer that points to the value itself, but not free the data somewhere else
     // Make sure that it manually frees the node->val just in case.
