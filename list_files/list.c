@@ -159,10 +159,16 @@ void List_removeAt(Listptr self, int index)
 // Returns a Nodeptr object for the first node found with the given val in the Linked List. Returns NULL if nothing found.
 Nodeptr List_findNodebyValue(Listptr self, void* val)
 {
+    // Main issues with this function:
+    /*
+        - The "val" argument is a void pointer
+        - The "currentNode->val" is a void pointer but now we store it as an actual pointer address in the node
+        - Need to convert from the address to the value, but need to know the type of value to properly convert it and compare. 
+    */
     Nodeptr currentNode = self->head;
     for(int i = 0; i < self->len; i++)
     {
-        if (currentNode->val == val)
+        if(currentNode->val == val)
         {
             return currentNode;
         }

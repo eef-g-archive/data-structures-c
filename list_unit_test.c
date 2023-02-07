@@ -14,7 +14,7 @@ int main()
 
 
     // Head Pointer
-    if(test_list->head->val == 800)
+    if(*(int *)test_list->head->val == 800)
     {
         printf("Test 1 passed. Valid Head Node/Pointer Value\n");
     }
@@ -26,7 +26,7 @@ int main()
     }
 
     // Tail Pointer
-    if (test_list->tail->val == 15)
+    if (*(int *)test_list->tail->val == 16)
     {
         printf("Test 2 passed. Valid Head Node/Pointer Value\n");
     }
