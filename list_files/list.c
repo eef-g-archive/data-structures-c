@@ -105,6 +105,7 @@ void List_insertBefore(Listptr self, int index, void* val, dataType type)
     self->len++;
 }
 
+
 /* Inserts a value at the index AFTER the index given in the Linked List.
    Keeps the value at index where it is, but the given value will be in index+1
 */
@@ -168,7 +169,7 @@ Nodeptr List_findNodebyValue(Listptr self, void* val)
     Nodeptr currentNode = self->head;
     for(int i = 0; i < self->len; i++)
     {
-        if(currentNode->val == val)
+        if(Node_getValue(currentNode) == val)
         {
             return currentNode;
         }
@@ -210,7 +211,7 @@ void List_valueSort(Listptr self)
         sort_index = i;
         for(int j = i; j < self->len; j++)
         {
-            if(List_walkToIndex(self, j)->val < List_walkToIndex(self, i)->val)
+            if(Node_getValue(List_walkToIndex(self, j)) < Node_getValue(List_walkToIndex(self, i)))
             {
                 sort_index = j;
             }
@@ -219,10 +220,11 @@ void List_valueSort(Listptr self)
     }
 
     // Need this last if-statement to error check for the shortcoming of the for-loop
-    if(self->head->val > self->head->next->val)
+    if(Node_getValue(self->head) > Node_getValue(self->head->next))
     {
         _shuffle(self, 0, 1);
     }
+    
 }
 
 // Sorts the given Linked List by the memory addresses of the values within it.

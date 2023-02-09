@@ -28,12 +28,46 @@ void Node_init(Nodeptr self, void* val, dataType type)
 // Returns the data stored in self->val
 void* Node_getValue(Nodeptr self)
 {
-    return self->val;
+    void* output = NULL;
+    switch (self->type)
+    {
+        case INT:
+        {
+            output = *(int *)self->val;
+            break;
+        }
+        case STRING:
+        {
+            output = (char*)self->val;
+            break;
+        }
+        case CHAR:
+        {
+            output = *(char *)self->val;
+            break;
+        }
+        case DOUBLE:
+        {
+            //printf("%.2f", *(double*)self->val);
+            output = self->val;
+            break;
+        }
+        case POINTER:
+        {
+            output = self->val;
+        }
+        default:
+        {
+            break;
+        }
+    }
+    return output;
 }
 
 // Changes the data stored in self->val and also updates the self->size value
 void Node_setValue(Nodeptr self, void* val)
 {
+    
     // RN no wayh to set size for pointers`
     self->val = val;
     self->size = sizeof(val);

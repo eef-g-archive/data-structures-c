@@ -6,7 +6,7 @@ int main()
 {
     // Set up the list to test
     Listptr test_list = List_new();
-    int test_list_values[] = {800, 77, 1, 40, 0, 16};
+    int test_list_values[] = {800, 77, 1, 40, 5, 0};
     for(int i = 0; i < 6; i++)
     {
         List_addValue(test_list, &test_list_values[i], INT);
@@ -14,7 +14,7 @@ int main()
 
 
     // Head Pointer
-    if(*(int *)test_list->head->val == 800)
+    if(Node_getValue(test_list->head) == 800)
     {
         printf("Test 1 passed. Valid Head Node/Pointer Value\n");
     }
@@ -26,9 +26,9 @@ int main()
     }
 
     // Tail Pointer
-    if (*(int *)test_list->tail->val == 16)
+    if (Node_getValue(test_list->tail) == 16)
     {
-        printf("Test 2 passed. Valid Head Node/Pointer Value\n");
+        printf("Test 2 passed. Valid Tail Node/Pointer Value\n");
     }
     else
     {
