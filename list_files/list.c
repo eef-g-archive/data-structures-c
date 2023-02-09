@@ -125,17 +125,16 @@ void List_insertAfter(Listptr self, int index, void* val, dataType type)
 void List_removeAt(Listptr self, int index)
 {
     // Check to make sure we're not removing the head of the list
-
+    Nodeptr nodeToDelete = List_walkToIndex(self, index);
     if (index == self->len - 1)
     {
-        Nodeptr nodeToDelete = List_WalkToIndex(self, index);
+        
         self->tail = nodeToDelete->prev;
         self->tail->next = NULL;
         Node_destroy(nodeToDelete);
     }
     else if((index > 0) & (index < self->len - 1))
     {
-        Nodeptr nodeToDelete = List_walkToIndex(self, index);
         Nodeptr previousNode = nodeToDelete->prev;
         previousNode->next = nodeToDelete->next;
         nodeToDelete->next->prev = previousNode;
@@ -150,7 +149,6 @@ void List_removeAt(Listptr self, int index)
     // If we are, then make the precautions needed
     else
     {
-        Nodeptr nodeToDelete = List_walkToIndex(self, index);
         if(self->len > 1)
         {
             self->head = nodeToDelete->next;
