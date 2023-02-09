@@ -93,6 +93,7 @@ void List_printList(Listptr self)
     }
 }
 
+
 /* Inserts a value at the index given in the Linked List.
    Pushes the existing value at index to index+1 in the list.
 */
@@ -124,7 +125,15 @@ void List_insertAfter(Listptr self, int index, void* val, dataType type)
 void List_removeAt(Listptr self, int index)
 {
     // Check to make sure we're not removing the head of the list
-    if (index != 0)
+
+    if (index == self->len - 1)
+    {
+        Nodeptr nodeToDelete = List_WalkToIndex(self, index);
+        self->tail = nodeToDelete->prev;
+        self->tail->next = NULL;
+        Node_destroy(nodeToDelete);
+    }
+    else if((index > 0) & (index < self->len - 1))
     {
         Nodeptr nodeToDelete = List_walkToIndex(self, index);
         Nodeptr previousNode = nodeToDelete->prev;
@@ -206,25 +215,50 @@ void _shuffle(Listptr self, int firstIndex, int secondIndex)
 void List_valueSort(Listptr self)
 {
     int sort_index;
-    for(int i = 0; i < self->len; i++)
+    int isSorted = 0;
+    int sortedCheck = 1;
+
+    while(isSorted == 0)
     {
-        sort_index = i;
-        for(int j = i; j < self->len; j++)
+        for(int i = 0; i < self->len; i++)
         {
-            if(Node_getValue(List_walkToIndex(self, j)) < Node_getValue(List_walkToIndex(self, i)))
+            sort_index = i;
+            for(int j = i; j < self->len; j++)
             {
-                sort_index = j;
+                if(Node_getValue(List_walkToIndex(self, j)) < Node_getValue(List_walkToIndex(self, i)))
+                {
+                    sort_index = j;
+                }
+            }
+            _shuffle(self, i, sort_index);
+        }
+
+        // Need this last if-statement to error check for the shortcoming of the for-loop
+        if(Node_getValue(self->head) > Node_getValue(self->head->next))
+        {
+            _shuffle(self, 0, 1);
+        }
+
+        for(int i = 0; i < self->len - 1; i++)
+        {
+            if(Node_getValue(List_walkToIndex(self, i)) > Node_getValue(List_walkToIndex(self, i + 1)))
+            {
+                sortedCheck = 0;
+                break;
             }
         }
-        _shuffle(self, i, sort_index);
+        if(sortedCheck != 1)
+        {
+            sortedCheck = 1;   
+        }
+        else
+        {
+            isSorted = 1;
+            break;
+        }
+
     }
 
-    // Need this last if-statement to error check for the shortcoming of the for-loop
-    if(Node_getValue(self->head) > Node_getValue(self->head->next))
-    {
-        _shuffle(self, 0, 1);
-    }
-    
 }
 
 // Sorts the given Linked List by the memory addresses of the values within it.

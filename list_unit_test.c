@@ -49,7 +49,7 @@ int main()
 
     // Value Sort
     List_valueSort(test_list);
-    if(test_list->head->val == 0)
+    if(Node_getValue(test_list->head) == 0)
     {
         printf("Test 4 Passed. Successful Value Sort\n");
     }
@@ -59,6 +59,8 @@ int main()
         Node_printVal(test_list->head);
         printf("'\n");
     }
+
+    List_removeAt(test_list, test_list->len - 1);
 
     //Address Sort Unit Test
 
