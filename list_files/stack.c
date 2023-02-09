@@ -26,7 +26,7 @@ void* Stack_Pop(Stackptr self)
 {
     int len = self->Stack_Backend->len;
     int pop_idx = len - 1;
-    void* node_val = List_walkToIndex(self->Stack_Backend, pop_idx) -> val;
+    void* node_val = Node_getValue(List_walkToIndex(self->Stack_Backend, pop_idx));
     List_removeAt(self->Stack_Backend, pop_idx);
     return node_val;
 }

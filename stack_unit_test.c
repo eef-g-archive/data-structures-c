@@ -10,11 +10,11 @@ int main()
     int test_stack_values[] = {800, 77, 1, 40, 0, 15};
     for(int i = 0; i < 6; i++)
     {
-        Stack_Push(test_stack, test_stack_values[i], INT);
+        Stack_Push(test_stack, &test_stack_values[i], INT);
     }
     
     // Head Pointer
-    if(test_stack->Stack_Backend->head->val == 800)
+    if(Node_getValue(test_stack->Stack_Backend->head) == 800)
     {
         printf("Test 1 Passed: Valid Head Node/Pointer\n");
     }
@@ -26,7 +26,7 @@ int main()
     }
     
     //Tail Pointer
-    if (test_stack->Stack_Backend->tail->val == 15)
+    if (Node_getValue(test_stack->Stack_Backend->tail) == 15)
     {
         printf("Test 2 Passed: Valid Tail Node/Pointer\n");
     }
