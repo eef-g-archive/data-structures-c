@@ -47,14 +47,26 @@ int main()
         printf("Test 3 Failed");
     }
 
-    // Test Finding a value
-    if(Stack_findNodebyValue(test_stack, 0))
+    //Push Unit Test
+    int test_val = 15;
+    Stack_Push(test_stack, &test_val, INT);
+    if(test_stack->Stack_Backend->len == 6)
     {
-        printf("Test 4 Passed: Find Node by Value\n");
+        printf("Test 4 Passed: Push Function\n");
     }
     else
     {
-        printf("Test 4 failed! Could not find node with value '0' in list.\n");
+        printf("Test 4 Failed: Did not push value to Stack\n");
+    }
+
+    // Test Finding a value
+    if(Stack_findNodebyValue(test_stack, 0))
+    {
+        printf("Test 5 Passed: Find Node by Value\n");
+    }
+    else
+    {
+        printf("Test 5 failed! Could not find node with value '0' in list.\n");
     }
 
     //Tests Functionality of Stack Print AND shows if Stack_Push was successful

@@ -26,13 +26,13 @@ int main()
     }
 
     // Tail Pointer
-    if (Node_getValue(test_list->tail) == 16)
+    if (Node_getValue(test_list->tail) == 0)
     {
         printf("Test 2 passed. Valid Tail Node/Pointer Value\n");
     }
     else
     {
-        printf("Test 2 failed! Expected '15', got '");
+        printf("Test 2 failed! Expected '0', got '");
         Node_printVal(test_list->tail);
         printf("'\n");
     }

@@ -11,14 +11,14 @@ int main()
         Queue_enqueue(test_queue, test_queue_values[i]);
     }
 
-    if( (test_queue->queueBackend->head->val == 800) && (test_queue->queueBackend->tail->val == 15) )
+    if( (Node_getValue(test_queue->queueBackend->head) == 800) && (Node_getValue(test_queue->queueBackend->tail) == 15) )
     {
         printf("Test 1 passed. Successfully enqueued all test values.\n");
     }
     else
     {
         printf("Test 1 failed. Beginning of queue is: '%d' | End of queue is: '%d'",
-         test_queue->queueBackend->head->val, test_queue->queueBackend->tail->val);
+         Node_getValue(test_queue->queueBackend->head), Node_getValue(test_queue->queueBackend->tail));
     }
 
     void* dequeue_output1 = Queue_dequeue(test_queue);
@@ -43,7 +43,4 @@ int main()
     {
         printf("Test 3 failed. Expected '77' to be dequeued, got '%d'\n", dequeue_output2);
     }
-
-    
-    
 }
