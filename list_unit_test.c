@@ -12,6 +12,8 @@ int main()
         List_addValue(test_list, &test_list_values[i], INT);
     }
 
+    printf("Starting list: ");
+    List_printList(test_list);
 
     // Head Pointer
     if(Node_getValue(test_list->head) == 800)
@@ -60,10 +62,83 @@ int main()
         printf("'\n");
     }
 
-    List_removeAt(test_list, test_list->len - 1);
 
     //Address Sort Unit Test
 
+
     //Print List AND addList Accuracy/Validity Test
+    printf("Sorted list by value: ");
     List_printList(test_list);
+
+    List_addressSort(test_list);
+    if(Node_getValue(test_list->head) == 800)
+    // Expecting it to be 800 bc that was the first value that was put into the list
+    {
+        printf("Test 5 passed. Successful Address Sort.\n");
+    }
+    else
+    {
+        printf("Test 5 failed! Unsuccessful Address Sort. Expected '0',  got '");
+        Node_printVal(test_list->head);
+        printf("\n");
+    }
+    printf("Sorted list by memory address: ");
+    List_printList(test_list);
+
+    List_removeAt(test_list, 0);
+    if(Node_getValue(test_list->head) == 77)
+    {
+        printf("Test 6 Passed. Successfully removed value at head.\n");
+    }
+    else
+    {
+        printf("Test 6 failed! Unsuccessful removeAt call. Expected '77' got '");
+        Node_printVal(test_list->head);
+        printf("'\n");
+    }
+
+    List_removeAt(test_list, test_list->len - 1);
+    if(Node_getValue(test_list->tail) == 5)
+    {
+        printf("Test 7 Passed. Successfully removed value at tail.\n");
+    }
+    else
+    {
+        printf("Test 7 failed! Unsuccessful removeAt call. Expected '5', got '");
+        Node_printVal(test_list->tail);
+        printf("'\n");
+    }
+
+    // NOTE: In order to insert a value, the value must be declared somewhere else BEFORE being used as a pointer argument.
+    // If you do not do that, it results in a memory issue
+    int val_to_insert = 23;
+    List_insertAfter(test_list, 2, &val_to_insert, INT);
+    List_printList(test_list);
+    Nodeptr test_node = List_walkToIndex(test_list, 3);
+    if(Node_getValue(test_node) == 23)
+    {
+        printf("Test 8 Passed. Successfully inserted value after specific index.\n");
+    }
+    else
+    {
+        printf("Test 8 failed! Unsuccessfully inserted value after specified index. Expected '23', received '");
+        Node_printVal(test_node);
+        printf("'\n");
+    }
+
+    int val2_to_insert = 17;
+    List_insertBefore(test_list, 1, &val2_to_insert, INT);
+    test_node = List_walkToIndex(test_list, 1);
+    List_printList(test_list);
+    if(Node_getValue(test_node) == 17)
+    {
+        printf("Test 9 Passed. Successfully inserted value before specified index.\n");
+    }
+    else
+    {
+        printf("Test 9 failed! Unsuccessfully inserted value before specified index. Expected '17', got '");
+        Node_printVal(test_node);
+        printf("'\n");
+    }
+
 }

@@ -49,6 +49,8 @@ void List_addValue(Listptr self, void* val, dataType type)
 
 /* Other Methods */
 
+
+
 // Returns the node object at a specific index within the Linked List
 Nodeptr List_walkToIndex(Listptr self, int index)
 {
@@ -67,7 +69,6 @@ Nodeptr List_walkToIndex(Listptr self, int index)
 */
 void List_printList(Listptr self)
 {
-
     if(self->len > 0)
     {
         printf("[ ");
@@ -101,8 +102,18 @@ void List_insertBefore(Listptr self, int index, void* val, dataType type)
 {
     Nodeptr newNode = Node_new(val, type);
     Nodeptr nodeAtIndex = List_walkToIndex(self, index - 1);
-    newNode->next = nodeAtIndex->next;
-    nodeAtIndex->next = newNode;
+    newNode->next = nodeAtIndex;
+    if(nodeAtIndex->prev == NULL)
+    {
+        self->head = newNode;
+        nodeAtIndex->prev = newNode;
+    }
+    else
+    {
+        newNode->prev = nodeAtIndex->prev;
+        newNode->prev->next = newNode;
+        nodeAtIndex->prev = newNode;
+    }
     self->len++;
 }
 
@@ -115,9 +126,15 @@ void List_insertAfter(Listptr self, int index, void* val, dataType type)
     Nodeptr newNode = Node_new(val, type);
     Nodeptr nodeAtIndex = List_walkToIndex(self, index);
     newNode->next = nodeAtIndex->next;
-    nodeAtIndex->next->prev = newNode;
+    if(newNode->next != NULL)
+    {
+        newNode->next->prev = newNode;
+    }
+    else
+    {
+        self->tail = newNode;
+    }
     nodeAtIndex->next = newNode;
-    newNode->prev = nodeAtIndex;
     self->len++;
 }
 
@@ -129,6 +146,7 @@ void List_removeAt(Listptr self, int index)
     if (index == self->len - 1)
     {
         
+        Nodeptr nodeToDelete = List_walkToIndex(self, index);
         self->tail = nodeToDelete->prev;
         self->tail->next = NULL;
         Node_destroy(nodeToDelete);
