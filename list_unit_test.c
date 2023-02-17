@@ -108,12 +108,13 @@ int main()
         Node_printVal(test_list->tail);
         printf("'\n");
     }
+    printf("List after removing head and tail: ");
+    List_printList(test_list);
 
     // NOTE: In order to insert a value, the value must be declared somewhere else BEFORE being used as a pointer argument.
     // If you do not do that, it results in a memory issue
     int val_to_insert = 23;
     List_insertAfter(test_list, 2, &val_to_insert, INT);
-    List_printList(test_list);
     Nodeptr test_node = List_walkToIndex(test_list, 3);
     if(Node_getValue(test_node) == 23)
     {
@@ -125,11 +126,15 @@ int main()
         Node_printVal(test_node);
         printf("'\n");
     }
+    printf("List after added value after index 2: ");
+    List_printList(test_list);
+
+
+
 
     int val2_to_insert = 17;
-    List_insertBefore(test_list, 1, &val2_to_insert, INT);
-    test_node = List_walkToIndex(test_list, 1);
-    List_printList(test_list);
+    List_insertBefore(test_list, 2, &val2_to_insert, INT);
+    test_node = List_walkToIndex(test_list, 2);
     if(Node_getValue(test_node) == 17)
     {
         printf("Test 9 Passed. Successfully inserted value before specified index.\n");
@@ -140,5 +145,25 @@ int main()
         Node_printVal(test_node);
         printf("'\n");
     }
+    printf("List after adding value before index 2: ");
+    List_printList(test_list);
 
+    Nodeptr unlinked_node = List_unlinkNodebyValue(test_list, 17);
+    if(Node_getValue(unlinked_node) == 17)
+    {
+        printf("Test 10 Passed. Successfully unlinked node after finding it based off of value.\n");
+    }
+    else
+    {
+        printf("Test 10 failed! Unsuccessfully unlinked node by finding it via value. Expected '17', got '");
+        Node_printNode(unlinked_node);
+        printf("'\n");
+    }
+    printf("List after unlinking value: ");
+    List_printList(test_list);
+
+    List_clear(test_list);
+    printf("Expected output: 'ERROR: List is empty'\n");
+    printf("Actual output: ");
+    List_printList(test_list);
 }

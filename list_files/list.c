@@ -101,7 +101,7 @@ void List_printList(Listptr self)
 void List_insertBefore(Listptr self, int index, void* val, dataType type)
 {
     Nodeptr newNode = Node_new(val, type);
-    Nodeptr nodeAtIndex = List_walkToIndex(self, index - 1);
+    Nodeptr nodeAtIndex = List_walkToIndex(self, index);
     newNode->next = nodeAtIndex;
     if(nodeAtIndex->prev == NULL)
     {
@@ -110,8 +110,8 @@ void List_insertBefore(Listptr self, int index, void* val, dataType type)
     }
     else
     {
+        nodeAtIndex->prev->next = newNode;
         newNode->prev = nodeAtIndex->prev;
-        newNode->prev->next = newNode;
         nodeAtIndex->prev = newNode;
     }
     self->len++;
@@ -167,12 +167,15 @@ void List_removeAt(Listptr self, int index)
     // If we are, then make the precautions needed
     else
     {
+        printf("Removing the head.\n");
         if(self->len > 1)
         {
             self->head = nodeToDelete->next;
+            self->head->prev = NULL;
         }
         else
         {
+            printf("Finishing off the list\n");
             self->head = NULL;
             self->tail = NULL;
         }
@@ -314,7 +317,9 @@ void List_clear(Listptr self)
     while(self->head->next != NULL)
     {
         List_removeAt(self, 0);
+        List_printList(self);
     }
+    printf("Removing the final part.\n");
     List_removeAt(self, 0);
 }
 
