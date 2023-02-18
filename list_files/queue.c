@@ -23,7 +23,17 @@ void Queue_enqueue(Queueptr self, void* val)
 
 void* Queue_dequeue(Queueptr self)
 {
-    void* node_val = self->queueBackend->head->val;
+    void* node_val = Node_getValue(self->queueBackend->head);
     List_removeAt(self->queueBackend, 0);
     return node_val;
+}
+
+void Queue_clear(Queueptr self)
+{
+    List_clear(self->queueBackend);
+}
+
+void Queue_print(Queueptr self)
+{
+    List_printList(self->queueBackend);
 }

@@ -13,11 +13,11 @@ typedef struct Stack
 
 typedef Stack* Stackptr;
 
-Stackptr Stack_new();
-void Stack_init(Stackptr s);
-void Stack_Push(Stackptr self, void* val, dataType type);
-void* Stack_Pop(Stackptr self);
-void* Stack_findNodebyValue(Stackptr self, void* val);
-void Stack_Print(Stackptr self);
+Stackptr Stack_new(); //
+void Stack_init(Stackptr s); //
+void Stack_Push(Stackptr self, void* val, dataType type); //
+void* Stack_Pop(Stackptr self); //
+void* Stack_findNodebyValue(Stackptr self, void* val); //
+void Stack_Print(Stackptr self); //
 
 #endif

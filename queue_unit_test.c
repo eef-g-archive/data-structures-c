@@ -8,7 +8,7 @@ int main()
     int test_queue_values[] = {800, 77, 1, 40, 0, 15};
     for(int i = 0; i < 6; i++)
     {
-        Queue_enqueue(test_queue, test_queue_values[i]);
+        Queue_enqueue(test_queue, &test_queue_values[i]);
     }
 
     if( (Node_getValue(test_queue->queueBackend->head) == 800) && (Node_getValue(test_queue->queueBackend->tail) == 15) )
@@ -43,4 +43,7 @@ int main()
     {
         printf("Test 3 failed. Expected '77' to be dequeued, got '%d'\n", dequeue_output2);
     }
+
+    Queue_clear(test_queue);
+    Queue_print(test_queue);
 }
