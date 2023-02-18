@@ -55,7 +55,10 @@ void List_addValue(Listptr self, void* val, dataType type)
 Nodeptr List_walkToIndex(Listptr self, int index)
 {
     Nodeptr currentNode = self->head;
-
+    if(index == 0 )
+    {
+        return currentNode;
+    }
     for(int i = 0; i < index; i++)
     {
         currentNode = currentNode->next;
@@ -143,9 +146,8 @@ void List_removeAt(Listptr self, int index)
 {
     // Check to make sure we're not removing the head of the list
     Nodeptr nodeToDelete = List_walkToIndex(self, index);
-    if (index == self->len - 1)
+    if ((index == self->len - 1) & (index != 0))
     {
-        
         Nodeptr nodeToDelete = List_walkToIndex(self, index);
         self->tail = nodeToDelete->prev;
         self->tail->next = NULL;
@@ -158,24 +160,21 @@ void List_removeAt(Listptr self, int index)
         nodeToDelete->next->prev = previousNode;
         Node_destroy(nodeToDelete);
 
-
         if(index == self->len)
         {
             self->tail = previousNode;
         }
     }
     // If we are, then make the precautions needed
-    else
+    else if (index == 0)
     {
-        printf("Removing the head.\n");
-        if(self->len > 1)
+        if(self->len != 1)
         {
             self->head = nodeToDelete->next;
             self->head->prev = NULL;
         }
         else
         {
-            printf("Finishing off the list\n");
             self->head = NULL;
             self->tail = NULL;
         }
@@ -317,9 +316,7 @@ void List_clear(Listptr self)
     while(self->head->next != NULL)
     {
         List_removeAt(self, 0);
-        List_printList(self);
     }
-    printf("Removing the final part.\n");
     List_removeAt(self, 0);
 }
 

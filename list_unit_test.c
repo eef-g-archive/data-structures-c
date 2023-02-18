@@ -161,6 +161,7 @@ int main()
     }
     printf("List after unlinking value: ");
     List_printList(test_list);
+    printf("If expected & actual outputs are the same: Test 11 Passed. Otherwise, Test 11 Failed.\n");
 
     List_clear(test_list);
     printf("Expected output: 'ERROR: List is empty'\n");
