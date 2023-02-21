@@ -167,4 +167,12 @@ int main()
     printf("Expected output: 'ERROR: List is empty'\n");
     printf("Actual output: ");
     List_printList(test_list);
+
+    printf("List Destroy: \n");
+    List_destroy(test_list);
+    //Address Boundary Error Shows that the Head pointer no longer exists and cannot be accessed
+    if (test_list -> head == NULL) //unreachable code
+    {
+        printf("List Destroy Successful!");
+    }
 }

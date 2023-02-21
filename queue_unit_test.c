@@ -44,6 +44,7 @@ int main()
         printf("Test 3 failed. Expected '77' to be dequeued, got '%d'\n", dequeue_output2);
     }
 
+    printf("Queue Full, Time to clear. \n");
     Queue_clear(test_queue);
     Queue_print(test_queue);
 }

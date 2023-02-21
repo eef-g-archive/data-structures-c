@@ -30,7 +30,7 @@ Nodeptr List_unlinkNodebyValue(Listptr self, void* val);
 void List_valueSort(Listptr self); //
 void List_addressSort(Listptr self); //
 void List_clear(Listptr self); //
-void List_destroy(Listptr self);
+void List_destroy(Listptr self); //
 void List_dump(Listptr self);
 
 #endif
