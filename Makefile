@@ -1,13 +1,13 @@
-all: list_unit_test.c stack_unit_test.c
-	gcc -Wall -Wextra -pedantic -std=c99 -o list.exe list_unit_test.c list_files/node.c list_files/list.c
-	gcc -Wall -Wextra -pedantic -std=c99 -o stack.exe stack_unit_test.c list_files/node.c list_files/list.c list_files/stack.c
-	gcc -Wall -Wextra -pedantic -std=c99 -o queue.exe queue_unit_test.c list_files/node.c list_files/list.c list_files/queue.c
-list_test: list_unit_test.c
-	gcc -Wall -Wextra -pedantic -std=c99 -o list.exe list_unit_test.c list_files/node.c list_files/list.c
-stack_test: stack_unit_test.c
-	gcc -Wall -Wextra -pedantic -std=c99 -o stack.exe stack_unit_test.c list_files/node.c list_files/list.c list_files/stack.c
-queue_test: queue_unit_test.c
-	gcc -Wall -Wextra -pedantic -std=c99 -o queue.exe queue_unit_test.c list_files/node.c list_files/list.c list_files/queue.c
+all: tests/list_unit_test.c tests/stack_unit_test.c tests/queue_unit_test.c
+	gcc -Wall -Wextra -pedantic -std=c99 -o list.exe tests/list_unit_test.c src/node.c src/list.c
+	gcc -Wall -Wextra -pedantic -std=c99 -o stack.exe tests/stack_unit_test.c src/node.c src/list.c src/stack.c
+	gcc -Wall -Wextra -pedantic -std=c99 -o queue.exe tests/queue_unit_test.c src/node.c src/list.c src/queue.c
+list_test: tests/list_unit_test.c
+	gcc -Wall -Wextra -pedantic -std=c99 -o list.exe tests/list_unit_test.c src/node.c src/list.c
+stack_test: tests/stack_unit_test.c
+	gcc -Wall -Wextra -pedantic -std=c99 -o stack.exe tests/stack_unit_test.c src/node.c src/list.c src/stack.c
+queue_test: tests/queue_unit_test.c
+	gcc -Wall -Wextra -pedantic -std=c99 -o queue.exe tests/queue_unit_test.c src/node.c src/list.c src/queue.c
 
 .PHONY: clean
 
