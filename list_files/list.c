@@ -93,7 +93,7 @@ void List_printList(Listptr self)
     }
     else
     {
-        printf("ERROR: List is empty\n");
+        printf("List is empty\n");
     }
 }
 
@@ -325,7 +325,11 @@ void List_destroy(Listptr self)
 {
     if(self)
     {
-        List_clear(self);
+        if(self->head != NULL)
+        {
+            List_clear(self);
+        }
         free(self);
+        self = NULL;
     }
 }
