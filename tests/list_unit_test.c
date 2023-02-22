@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../headers/list.h"
+// NOTES: 
+/*
+    - Add tests that we know will purposely fail (To check for graceful error out)
+    - Remove the segmentation faut
+    - Add the debug heap to the test to see if the list is really destroyed or not
+*/
+
 
 int main()
 {

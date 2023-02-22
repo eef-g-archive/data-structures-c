@@ -101,7 +101,6 @@ void Node_printVal(Nodeptr self)
         }
         case DOUBLE:
         {
-            //printf("%.2f", *(double*)self->val);
             double *temporaryDoublePointer = self->val;
             double temporaryDoubleStorage = *temporaryDoublePointer;
             printf("%.2f", temporaryDoubleStorage);
