@@ -9,9 +9,8 @@ typedef struct Stack
 {
     Listptr Stack_Backend;
 
-} Stack;
+} Stack, *Stackptr;
 
-typedef Stack* Stackptr;
 
 Stackptr Stack_new(); //
 void Stack_init(Stackptr s); //

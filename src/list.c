@@ -328,6 +328,8 @@ void List_destroy(Listptr self)
         {
             List_clear(self);
         }
+        free(self->head);
+        free(self->tail);
         free(self);
         self = NULL;
     }

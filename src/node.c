@@ -167,6 +167,10 @@ void Node_reset(Nodeptr self)
         Add a new variable into the node that is a pointer to the clearnup function
         In reset, call the clearnup function on self->val
     */
+   if(self->type == POINTER)
+   {
+    free(self->val);
+   }
     self->val = NULL;
 } 
 

@@ -171,5 +171,6 @@ int main()
     printf("List Destroy: \n");
     List_destroy(test_list);
     test_list = NULL;
+    List_printList(test_list);
     //Address Boundary Error Shows that the Head pointer no longer exists and cannot be accessed
 }
