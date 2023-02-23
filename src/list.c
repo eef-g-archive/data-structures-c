@@ -109,6 +109,11 @@ void List_insertBefore(Listptr self, int index, void* val, dataType type)
 {
     Nodeptr newNode = Node_new(val, type);
     Nodeptr nodeAtIndex = List_walkToIndex(self, index);
+    if(nodeAtIndex == NULL)
+    {
+        return;
+    }
+
     newNode->next = nodeAtIndex;
     if(nodeAtIndex->prev == NULL)
     {
@@ -132,6 +137,11 @@ void List_insertAfter(Listptr self, int index, void* val, dataType type)
 {
     Nodeptr newNode = Node_new(val, type);
     Nodeptr nodeAtIndex = List_walkToIndex(self, index);
+    if(nodeAtIndex == NULL)
+    {
+        return;
+    }
+
     newNode->next = nodeAtIndex->next;
     if(newNode->next != NULL)
     {
@@ -154,6 +164,7 @@ void List_removeAt(Listptr self, int index)
     {
         return;
     }
+
     if ((index == self->len - 1) & (index != 0))
     {
         Nodeptr nodeToDelete = List_walkToIndex(self, index);
@@ -218,7 +229,7 @@ Nodeptr List_findNodebyValue(Listptr self, void* val)
 Nodeptr List_unlinkNodebyValue(Listptr self, void* val)
 {
     Nodeptr nodeToUnlink = List_findNodebyValue(self, val);
-    if(nodeToUnlink)
+    if(nodeToUnlink != NULL)
     {
         printf("Unlinking node\n");
         nodeToUnlink->prev->next = nodeToUnlink->next;
