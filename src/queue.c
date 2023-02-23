@@ -23,8 +23,16 @@ void Queue_enqueue(Queueptr self, void* val)
 void* Queue_dequeue(Queueptr self)
 {
     void* node_val = Node_getValue(self->queueBackend->head);
+    int len = self->queueBackend->len;
     List_removeAt(self->queueBackend, 0);
-    return node_val;
+    if(self->queueBackend->len == len)
+    {
+        return NULL;
+    }
+    else
+    {
+        return node_val;
+    }
 }
 
 void Queue_clear(Queueptr self)
