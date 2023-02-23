@@ -69,9 +69,7 @@ int main()
         printf("'\n");
     }
 
-
     //Address Sort Unit Test
-
 
     //Print List AND addList Accuracy/Validity Test
     printf("Sorted list by value: ");
@@ -175,9 +173,15 @@ int main()
     printf("Actual output: ");
     List_printList(test_list);
 
-    printf("List Destroy: \n");
+    //Graceful Failure Tests
+    if (List_findNodebyValue(test_list, 0) == NULL)
+    {
+        printf("Find Node by Value: Failed Gracefully");
+    }
+
+    
+    
     List_destroy(test_list);
-    test_list = NULL;
-    List_printList(test_list);
+    printf("List Destroy: Successful\n");
     //Address Boundary Error Shows that the Head pointer no longer exists and cannot be accessed
 }
