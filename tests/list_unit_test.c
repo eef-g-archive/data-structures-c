@@ -72,7 +72,6 @@ int main()
 
     //Address Sort Unit Test
 
-
     //Print List AND addList Accuracy/Validity Test
     printf("Sorted list by value: ");
     List_printList(test_list);

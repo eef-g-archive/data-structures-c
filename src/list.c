@@ -53,6 +53,10 @@ void List_addValue(Listptr self, void* val, dataType type)
 // Returns the node object at a specific index within the Linked List
 Nodeptr List_walkToIndex(Listptr self, int index)
 {
+    if( (index < self->len) || (index > self->len) )
+    {
+        return NULL;
+    }
     Nodeptr currentNode = self->head;
     if(index == 0 )
     {
