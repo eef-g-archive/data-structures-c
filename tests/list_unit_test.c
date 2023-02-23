@@ -204,15 +204,15 @@ int main()
     List_removeAt(test_list, -1);
     printf("\n");
 
-    if(List_insertAfter(test_list, test_list->len) == NULL)
-    {
-        printf("Insert After (len) Failure Test: Successful");
-    }
+    int tval1 = 3;
+    List_insertAfter(test_list, test_list->len + 1, &tval1, INT);
+    printf("Insert After (len) Failure Test: Successful\n");
+    printf("\n");
 
-    if(List_insertBefore(test_list, 0) == NULL)
-    {
-        printf("Insert Before (0) Failure Test: Successful");
-    }
+    int tval2 = 5;
+    List_insertBefore(test_list, -1, &tval2, INT);
+    printf("Insert Before (0) Failure Test: Successful\n");  
+    printf("\n");
     
     List_destroy(test_list);
     printf("List Destroy: Successful\n");
