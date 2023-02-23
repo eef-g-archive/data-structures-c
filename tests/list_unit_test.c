@@ -179,7 +179,12 @@ int main()
         printf("Find Node by Value: Failed Gracefully");
     }
 
-    
+    if(List_walkToIndex(test_list, -1) && List_walkToIndex(test_list, test_list->len + 1) == NULL)
+    {
+        printf("Walk to Index: Failed Gracefully");
+    }
+
+    //if(List_removeAt(test_list, -1) )
     
     List_destroy(test_list);
     printf("List Destroy: Successful\n");

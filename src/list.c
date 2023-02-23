@@ -150,6 +150,10 @@ void List_removeAt(Listptr self, int index)
 {
     // Check to make sure we're not removing the head of the list
     Nodeptr nodeToDelete = List_walkToIndex(self, index);
+    if (nodeToDelete == NULL)
+    {
+        return;
+    }
     if ((index == self->len - 1) & (index != 0))
     {
         Nodeptr nodeToDelete = List_walkToIndex(self, index);
@@ -185,6 +189,7 @@ void List_removeAt(Listptr self, int index)
         Node_destroy(nodeToDelete);
         nodeToDelete = NULL;
     }
+
     self->len--;
 }
 
