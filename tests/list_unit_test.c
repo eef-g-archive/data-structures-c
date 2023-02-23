@@ -55,6 +55,7 @@ int main()
     {
         printf("Test 3 failed! Could not find node with value '0' in list.\n");
     }
+    printf("\n");
 
     // Value Sort
     List_valueSort(test_list);
@@ -68,12 +69,13 @@ int main()
         Node_printVal(test_list->head);
         printf("'\n");
     }
-
     //Address Sort Unit Test
+
 
     //Print List AND addList Accuracy/Validity Test
     printf("Sorted list by value: ");
     List_printList(test_list);
+    printf("\n");
 
     List_addressSort(test_list);
     if(Node_getValue(test_list->head) == 800)
@@ -89,6 +91,7 @@ int main()
     }
     printf("Sorted list by memory address: ");
     List_printList(test_list);
+    printf("\n");
 
     List_removeAt(test_list, 0);
     if(Node_getValue(test_list->head) == 77)
@@ -115,6 +118,7 @@ int main()
     }
     printf("List after removing head and tail: ");
     List_printList(test_list);
+    printf("\n");
 
     // NOTE: In order to insert a value, the value must be declared somewhere else BEFORE being used as a pointer argument.
     // If you do not do that, it results in a memory issue
@@ -133,9 +137,7 @@ int main()
     }
     printf("List after added value after index 2: ");
     List_printList(test_list);
-
-
-
+    printf("\n");
 
     int val2_to_insert = 17;
     List_insertBefore(test_list, 2, &val2_to_insert, INT);
@@ -152,6 +154,7 @@ int main()
     }
     printf("List after adding value before index 2: ");
     List_printList(test_list);
+    printf("\n");
 
     Nodeptr unlinked_node = List_unlinkNodebyValue(test_list, 17);
     if(Node_getValue(unlinked_node) == 17)
@@ -167,24 +170,49 @@ int main()
     printf("List after unlinking value: ");
     List_printList(test_list);
     printf("If expected & actual outputs are the same: Test 11 Passed. Otherwise, Test 11 Failed.\n");
+    printf("\n");
+
 
     List_clear(test_list);
     printf("Expected output: 'ERROR: List is empty'\n");
     printf("Actual output: ");
     List_printList(test_list);
+    printf("\n");
 
-    //Graceful Failure Tests
+    printf("Failure Tests:\n");
     if (List_findNodebyValue(test_list, 0) == NULL)
     {
-        printf("Find Node by Value: Failed Gracefully");
+        printf("Find Node by Value: Failed Gracefully\n");
+        printf("\n");
     }
 
-    if(List_walkToIndex(test_list, -1) && List_walkToIndex(test_list, test_list->len + 1) == NULL)
+    if(List_walkToIndex(test_list, -1) == NULL)
     {
-        printf("Walk to Index: Failed Gracefully");
+        printf("Walk to Index (input = -1): Failed Gracefully\n");
+        printf("\n");
+
     }
 
-    //if(List_removeAt(test_list, -1) )
+    if(List_walkToIndex(test_list, test_list->len + 1) == NULL)
+    {
+        printf("Walk to Index (input = len + 1): Failed Gracefully\n");
+        printf("\n");
+
+    }
+
+    printf("Remove At Failure Test. Input = -1, Expected: 'Index out of bounds'\n");
+    List_removeAt(test_list, -1);
+    printf("\n");
+
+    if(List_insertAfter(test_list, test_list->len) == NULL)
+    {
+        printf("Insert After (len) Failure Test: Successful");
+    }
+
+    if(List_insertBefore(test_list, 0) == NULL)
+    {
+        printf("Insert Before (0) Failure Test: Successful");
+    }
     
     List_destroy(test_list);
     printf("List Destroy: Successful\n");
