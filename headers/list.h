@@ -4,6 +4,9 @@
 #include "node.h"
 #include <stdlib.h>
 
+// Uncomment this line for debugging (WILL ONLY WORK IN THIS ORIGINAL REPO!!!)
+//#include "../tests/debug/debug_heap.h"
+
 typedef struct List
 {
     /* data */

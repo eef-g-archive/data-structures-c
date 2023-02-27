@@ -12,3 +12,6 @@
 *.vsix
 
 *.exe
+
+
+include/full-lib-test.c

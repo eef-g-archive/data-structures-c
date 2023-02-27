@@ -15,9 +15,9 @@ void Queue_init(Queueptr q)
     q->queueBackend = List_new();
 }
 
-void Queue_enqueue(Queueptr self, void* val)
+void Queue_enqueue(Queueptr self, void* val, dataType type)
 {
-    List_addValue(self->queueBackend, val, INT);
+    List_addValue(self->queueBackend, val, type);
 }
 
 void* Queue_dequeue(Queueptr self)

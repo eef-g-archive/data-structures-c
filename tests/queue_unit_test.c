@@ -8,7 +8,7 @@ int main()
     int test_queue_values[] = {800, 77, 1, 40, 0, 15};
     for(int i = 0; i < 6; i++)
     {
-        Queue_enqueue(test_queue, &test_queue_values[i]);
+        Queue_enqueue(test_queue, &test_queue_values[i], INT);
     }
 
     if( (Node_getValue(test_queue->queueBackend->head) == 800) && (Node_getValue(test_queue->queueBackend->tail) == 15) )

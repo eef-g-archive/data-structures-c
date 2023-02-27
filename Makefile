@@ -9,6 +9,8 @@ stack_test: tests/stack_unit_test.c
 queue_test: tests/queue_unit_test.c
 	gcc -Wall -Wextra -pedantic -std=c99 -o queue.exe tests/queue_unit_test.c src/node.c src/list.c src/queue.c
 
+lib_test: include/full-lib-test.c
+	gcc -Wall -Wextra -pedantic -std=c99 -o lib.exe include/full-lib-test.c include/data-structures.c
 .PHONY: clean
 
 clean:
