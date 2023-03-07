@@ -19,6 +19,7 @@ int main()
         List_addValue(test_list, &test_list_values[i], INT);
     }
 
+
     printf("Starting list: ");
     List_printList(test_list);
 
@@ -69,8 +70,9 @@ int main()
         Node_printVal(test_list->head);
         printf("'\n");
     }
-    //Address Sort Unit Test
 
+
+    //Address Sort Unit Test
 
     //Print List AND addList Accuracy/Validity Test
     printf("Sorted list by value: ");
@@ -92,6 +94,7 @@ int main()
     printf("Sorted list by memory address: ");
     List_printList(test_list);
     printf("\n");
+
 
     List_removeAt(test_list, 0);
     if(Node_getValue(test_list->head) == 77)
@@ -214,6 +217,7 @@ int main()
     printf("Insert Before (0) Failure Test: Successful\n");  
     printf("\n");
     
+    Node_destroy(unlinked_node);
     List_destroy(test_list);
     printf("List Destroy: Successful\n");
     //Address Boundary Error Shows that the Head pointer no longer exists and cannot be accessed

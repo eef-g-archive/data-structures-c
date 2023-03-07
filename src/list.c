@@ -112,6 +112,7 @@ void List_insertBefore(Listptr self, int index, void* val, dataType type)
     Nodeptr nodeAtIndex = List_walkToIndex(self, index);
     if(nodeAtIndex == NULL)
     {
+        Node_destroy(newNode);
         return;
     }
 
@@ -140,6 +141,7 @@ void List_insertAfter(Listptr self, int index, void* val, dataType type)
     Nodeptr nodeAtIndex = List_walkToIndex(self, index);
     if(nodeAtIndex == NULL)
     {
+        Node_destroy(newNode);
         return;
     }
 
@@ -353,6 +355,5 @@ void List_destroy(Listptr self)
         free(self->head);
         free(self->tail);
         free(self);
-        self = NULL;
     }
 }

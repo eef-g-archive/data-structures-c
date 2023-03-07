@@ -5,7 +5,6 @@
 #include "../headers/node.h"
 
 
-
 /* Constructor Functions */
 
 // Create a new node object on the heap and return a Nodeptr to that Node
@@ -170,10 +169,10 @@ void Node_reset(Nodeptr self)
     */
    if(self->type == POINTER)
    {
-    free(self->val);
+        free(self->val);
    }
     self->val = NULL;
-} 
+}
 
 // Clear out the node's data and then free the struct from memory
 void Node_destroy(Nodeptr self)
