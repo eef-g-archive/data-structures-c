@@ -1,4 +1,5 @@
-﻿List.h
+
+List.h
 
 * This program is a list implementation in C. It makes use of a linked list structure, in which each node contains a pointer to the value stored, the type of the
 value, and two pointers to the previous and next nodes in the list. It provides various functions which can be used to manipulate the list, such as adding values,
@@ -75,3 +76,4 @@ entire list.
 popping values. It also has a function for printing the stack and finding nodes by value.
 * Queue: A Queue is a FIFO (First In First Out) data structure that stores data in a similar fashion to a List, but with additional functionality for enqueuing and
 dequeuing values. It also has a function for printing the queue and clearing and destroying the entire queue.
+
