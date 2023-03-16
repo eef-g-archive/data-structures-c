@@ -1,5 +1,5 @@
 # Data Structures C
-A repository by eef-g for demonstrating data structures in C.
+A repository by eef-g, Liamtrob and vikwillberg for demonstrating data structures in C.
 
 ## Description
 This repository contains code samples for various data structures written in C.  The code samples are intended to demonstrate how to implement data structures in the C programming language.  The repository includes code for linked lists, stacks, queues, binary trees, and hash tables.
