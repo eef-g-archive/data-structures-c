@@ -1,6 +1,5 @@
 ﻿List.h
 
-
 * This program is a list implementation in C. It makes use of a linked list structure, in which each node contains a pointer to the value stored, the type of the value, and two pointers to the previous and next nodes in the list. It provides various functions which can be used to manipulate the list, such as adding values, inserting nodes, sorting nodes, and printing the list. 
 * The List_new() function is the constructor for a new List and the List_init() function initializes the list with a head and tail node. The List_addValue() function adds a value to the list, specifying the value and its type, and the List_printList() function prints the list's contents. 
 * The List_walkToIndex() function takes an index as an argument and returns the node at that index, and the List_findNodebyValue() function takes a value and returns the node containing that value. The List_insertBefore() and List_insertAfter() functions take an index and a value and insert a node with that value into the list before or after the index, respectively. 
@@ -10,12 +9,12 @@
 
 Node.h
 
-
 * This program implements a Node data structure using the C programming language. It contains a struct Node that stores a void* val, a type dataType, a 'next' node, a previous node, and a size field. The program also contains functions to initialize a new node, get and set its value, reset its value, destroy the node, and print its value and node.
 * The Node_new() function is used to create a new node. It takes in a void* val and a dataType type as parameters and returns a pointer to the newly-created node. The Node_init() function is used to initialize the node with the given value and type. The Node_getValue() and Node_setValue() functions are used to get and set the value of the node, respectively. The Node_reset() function is used to reset the value of the node to NULL. The Node_destroy() function is used to free the memory allocated for the node. Finally, the Node_printVal() and Node_printNode() functions are used to print the value of the node and the node itself, respectively.
 
 
 Queue.h
+
 * This program implements a Queue data structure in C. It uses a linked list as the backend. 
 * Queue_new() - This function creates a new queue and initializes it.
 * Queue_init(Queueptr q) - This function takes a pointer to an existing queue and initializes it. 
@@ -28,7 +27,6 @@ Queue.h
 
 Stack.h
 
-
 * This program implements a Stack data structure. 
 * The Stack_new() function creates a new Stack and returns a pointer to it. 
 * The Stack_init(Stackptr s) function initializes a stack to empty. 
@@ -39,7 +37,6 @@ Stack.h
 
 
 Data-structures.c
-
 
 * This program is a data-structures library that features a node and a list structure.
 * A node is a data structure that holds a value, a type, and a size. The constructor for the node takes in a value and a type and creates a new node object on the heap. The node object also has a printVal, printNode, reset, and destroy functions. 
@@ -52,7 +49,6 @@ Data-structures.c
 
 
 Data-structures.h
-
 
 * This program contains code for implementing a generic doubly linked list, stack, and queue in C. Each type of data structure has some unique characteristics and functions associated with it.
 * Node: A Node is a basic data structure that stores a pointer to a piece of data and a pointer to the next Node. Each Node also has a dataType field that is used to store the type of data the Node stores. Nodes have a few basic functions for initialization, getting and setting values, printing, and destruction. 
